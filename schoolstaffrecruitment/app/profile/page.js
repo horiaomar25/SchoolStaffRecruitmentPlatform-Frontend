@@ -1,6 +1,6 @@
 "use client"; 
 import React from "react";
-import useFetchUsers from "../../CustomHooks/FetchProfileData"; 
+import useFetchUsers from "../../CustomHooks/useProfileData"; 
 import ProfileHeader from "../components/ProfileHeader"; 
 import Navigation from "../components/Navigation";
 
@@ -15,6 +15,7 @@ function Page() {
   return (
     <main >
       <Navigation/>
+      <ProfileHeader/>
       
     </main>
   );
