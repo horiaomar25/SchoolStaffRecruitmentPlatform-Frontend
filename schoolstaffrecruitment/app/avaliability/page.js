@@ -5,7 +5,7 @@ import AvaliabilityHeader from '../components/AvaliabilityHeader';
 
 const page = () => {
   return (
-    <main className="flex h-screen">
+    <main >
       <Navigation />
       <div className="flex-1 bg-gray-100">
         <AvaliabilityHeader />

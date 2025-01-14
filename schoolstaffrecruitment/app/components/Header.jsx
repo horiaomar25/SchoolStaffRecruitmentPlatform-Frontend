@@ -4,7 +4,7 @@ import CalendarPage from './Calendar'
 
 const Header = () => {
   return (
-    <div className="flex-1 bg-gray-100 p-6">
+    <div className='flex justify-center items-center flex-col' >
                     <h2 className="text-xl font-semibold">Welcome to the Dashboard</h2>
                     <p className="mt-4 text-gray-600">Select an option from the sidebar to proceed.</p>
                  

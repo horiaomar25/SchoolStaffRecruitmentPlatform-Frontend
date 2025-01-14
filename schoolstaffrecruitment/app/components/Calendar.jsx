@@ -5,7 +5,7 @@ import interactionPlugin from '@fullcalendar/interaction';
 
 function Calendar() {
   return (
-    <div className="calendar-container">
+    <div >
       <FullCalendar
         plugins={[dayGridPlugin, interactionPlugin]}
         headerToolbar={{
