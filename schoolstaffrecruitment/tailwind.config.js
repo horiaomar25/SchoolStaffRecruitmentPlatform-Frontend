@@ -13,6 +13,10 @@ module.exports = {
       'large-desktop': '1280px',
     },
     extend: {
+      colors:{
+        'logo-blue':'#3cabe0',
+        
+      }
     },
   },
   daisyui: {
