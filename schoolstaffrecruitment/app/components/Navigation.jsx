@@ -3,7 +3,7 @@ import Link from 'next/link'
 
 const Navigation = () => {
   return (
-    <div className="navbar bg-base-100">
+    <div className="navbar bg-base-100 border-b border-base-200">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -23,9 +23,9 @@ const Navigation = () => {
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-            <li><a>Dashboard</a></li>
+            <li><a className='text-lg'>Dashboard</a></li>
             <li>
-              <a>Profile</a>
+              <a className='text-lg'>Profile</a>
               <ul className="p-2">
                 <li><a>Submenu 1</a></li>
                 <li><a>Submenu 2</a></li>
@@ -36,21 +36,23 @@ const Navigation = () => {
         </div>
         <a className="btn btn-ghost text-xl">School Staff</a>
       </div>
-      <div className="navbar-center hidden lg:flex">
+
+      {/* Desktop Navigation */}
+      <div className="navbar-center hidden lg:flex  ">
         <ul className="menu menu-horizontal px-1">
           <li>
-            <Link href='/dashboard'>Dashboard</Link>
+            <Link href='/dashboard' ><span className='text-lg font-bold hover:text-blue-500'>Dashboard</span></Link>
           </li>
           <li>
-            <Link href='/profile'>Profile</Link>
+            <Link href='/profile' ><span className='text-lg font-bold hover:text-blue-500'>Profile</span></Link>
           </li>
           <li>
-            <Link href='/avaliability'>Avaliability</Link>
+            <Link href='/avaliability' ><span className='text-lg font-bold hover:text-blue-500'>Avaliability</span></Link>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn">Logout</a>
+        <a className="btn hover:bg-red-500">Logout</a>
       </div>
     </div>
   )

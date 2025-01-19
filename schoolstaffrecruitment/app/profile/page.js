@@ -1,13 +1,10 @@
 "use client"; 
 import React from "react";
-import useFetchUsers from "../../CustomHooks/useProfileData"; 
-import ProfileHeader from "../components/ProfileHeader"; 
 import Navigation from "../components/Navigation";
+import ProfileCard from "../components/ProfileCard";
 
 function Page() {
-  const { data, loading, error } = useFetchUsers();
-  console.log(data);
-
+  
   
 
 
@@ -15,7 +12,8 @@ function Page() {
   return (
     <main >
       <Navigation/>
-      <ProfileHeader/>
+      <ProfileCard/>
+      
       
     </main>
   );
