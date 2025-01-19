@@ -15,7 +15,7 @@ export default function Home() {
       <input type="text" placeholder="Enter your email" className='mb-4 p-3 w-full max-w-xs border border-gray-300 rounded'/>
       <input type="password" placeholder="Enter your password" className='mb-4 p-3 w-full max-w-xs border border-gray-300 rounded'/>
       
-      <button className="btn btn-wide hover:bg-blue-500">Login</button>
+      <button className="btn btn-wide hover:bg-logo-blue">Login</button>
       </div>
       
     </main>
