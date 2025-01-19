@@ -7,9 +7,9 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",],
   theme: {
     screens:{
-      'mobile': '640px',
-      'tablet': '768px',
-      'desktop': '1024px',
+      'mobile': '960px',
+      'tablet': '960px',
+      'desktop': '1440px',
       'large-desktop': '1280px',
     },
     extend: {
