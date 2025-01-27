@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navigation from "../../components/Navigation";
 import ProfileCard from "../../components/ProfileCard";
 import WorkHistoryCard from "../../components/WorkHistoryCard";
@@ -9,6 +9,20 @@ import AssignmentCard from "@/components/AssignmentCard";
 
 function Page() {
   const [showProfileDescription, setShowProfileDescription] = useState(false);
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsLargeScreen(window.innerWidth >= 1024);
+    };
+
+    handleResize(); // Check the window size on initial render
+    window.addEventListener("resize", handleResize);
+    
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
 
   const toggleProfileDescription = () => {
     setShowProfileDescription(!showProfileDescription);
@@ -26,15 +40,15 @@ function Page() {
         </section>
 
         {/* Column 2 */}
-        <section className="grid justify-center  lg:border lg:border-blue-500 space-y-4 h-full lg:h-screen">
+        <section className="grid justify-center lg:block lg:border lg:border-blue-500 space-y-4 h-full lg:h-screen">
           <button
             onClick={toggleProfileDescription}
             className="btn btn-primary md:hidden lg:hidden"
           >
             {showProfileDescription ? "Hide Profile Description" : "Show Profile Description"}
           </button>
-          {(showProfileDescription || window.innerWidth >= 764) && (
-            <ProfileDescriptionCard  />
+          {(showProfileDescription || isLargeScreen) && (
+            <ProfileDescriptionCard className="lg:h-screen" />
           )}
         </section>
 
@@ -49,4 +63,3 @@ function Page() {
 }
 
 export default Page;
-
