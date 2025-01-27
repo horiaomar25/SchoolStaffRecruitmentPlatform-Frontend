@@ -40,7 +40,7 @@ function Page() {
         </section>
 
         {/* Column 2 */}
-        <section className="grid justify-center lg:block lg:border lg:border-blue-500 space-y-4 h-full lg:h-screen">
+        <section className="grid justify-center  lg:border lg:border-blue-500 space-y-4 h-full lg:h-screen">
           <button
             onClick={toggleProfileDescription}
             className="btn btn-primary md:hidden lg:hidden"
