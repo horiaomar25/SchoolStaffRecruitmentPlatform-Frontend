@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import MobileProfile from './MobileProfile';
+
 
 const ProfileDescriptionCard = () => {
 
@@ -13,7 +13,7 @@ const ProfileDescriptionCard = () => {
   return (
     <>
     
-    {/* <MobileProfile/> */}
+ 
     
     
     <div className="card w-96 bg-base-100 shadow-md ">
