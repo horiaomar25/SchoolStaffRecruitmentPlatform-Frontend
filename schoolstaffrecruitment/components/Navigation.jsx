@@ -45,7 +45,7 @@ const Navigation = () => {
             <div className="fixed inset-0 bg-white bg-opacity-90 flex flex-col justify-center items-center z-50">
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-black rounded-box mt-3 p-2 shadow h-full w-full flex flex-col justify-center items-center"
+                className="menu menu-sm dropdown-content bg-white rounded-box mt-3 p-2 shadow h-full w-full flex flex-col justify-center items-center"
                 onClick={closeMenu}
               >
                 <button onClick={closeMenu} className="absolute top-4 right-4 text-black text-5xl font-bold">
