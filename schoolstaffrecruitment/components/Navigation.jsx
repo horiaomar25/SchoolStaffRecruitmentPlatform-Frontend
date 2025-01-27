@@ -38,7 +38,7 @@ const Navigation = () => {
       </div>
 
       {/* Desktop Navigation */}
-      <div className="navbar-center hidden lg:flex  ">
+      <div className="navbar-center  lg:flex  ">
         <ul className="menu menu-horizontal px-1">
           <li>
             <Link href='/dashboard' ><span className='text-lg font-bold hover:text-blue-500'>Dashboard</span></Link>
