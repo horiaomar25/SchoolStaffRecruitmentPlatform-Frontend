@@ -1,10 +1,14 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
+import useAuth from '../customhooks/useAuth';
 
 const Navigation = () => {
   // State to open and close mobile menu
   const [menuOpen, setMenuOpen] = useState(false);
+  const { logout } = useAuth();
+  const router = useRouter();
 
   // Function to toggle mobile menu
   const toggleMenu = () => {
@@ -14,6 +18,11 @@ const Navigation = () => {
   // Function to close mobile menu
   const closeMenu = () => {
     setMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    router.push('/'); // Redirect to login page after logout
   };
 
   return (
@@ -58,7 +67,7 @@ const Navigation = () => {
                   <Link href="/profile">Profile</Link>
                 </li>
                 <li className='text-black text-2xl font-semibold mt-8' onClick={closeMenu}>
-                  <Link href="/availability">Availability</Link>
+                  <Link href="/avaliability">Availability</Link>
                 </li>
               </ul>
             </div>
@@ -77,12 +86,12 @@ const Navigation = () => {
             <Link href='/profile'><span className='text-lg font-bold hover:text-blue-500'>Profile</span></Link>
           </li>
           <li>
-            <Link href='/availability'><span className='text-lg font-bold hover:text-blue-500'>Availability</span></Link>
+            <Link href='/avaliability'><span className='text-lg font-bold hover:text-blue-500'>Availability</span></Link>
           </li>
         </ul>
       </div>
       <div className="navbar-end">
-        <a className="btn hover:bg-red-500">Logout</a>
+        <a onClick={handleLogout} className="btn hover:bg-red-500">Logout</a>
       </div>
     </div>
   );
