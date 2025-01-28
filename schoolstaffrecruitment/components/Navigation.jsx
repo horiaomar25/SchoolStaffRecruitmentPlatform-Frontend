@@ -1,29 +1,18 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
-import useAuth from '../customhooks/useAuth';
+
 
 const Navigation = () => {
   // State to open and close mobile menu
   const [menuOpen, setMenuOpen] = useState(false);
-  const { logout } = useAuth();
-  const router = useRouter();
-
-  // Function to toggle mobile menu
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+ 
 
   // Function to close mobile menu
   const closeMenu = () => {
     setMenuOpen(false);
   };
 
-  const handleLogout = () => {
-    logout();
-    router.push('/'); // Redirect to login page after logout
-  };
 
   return (
     <div className="navbar bg-base-100 border-b border-base-200">
@@ -33,7 +22,7 @@ const Navigation = () => {
             tabIndex={0} 
             role="button" 
             className="btn btn-ghost lg:hidden" 
-            onClick={toggleMenu}
+            
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +80,7 @@ const Navigation = () => {
         </ul>
       </div>
       <div className="navbar-end">
-        <a onClick={handleLogout} className="btn hover:bg-red-500">Logout</a>
+        <a  className="btn hover:bg-red-500">Logout</a>
       </div>
     </div>
   );
