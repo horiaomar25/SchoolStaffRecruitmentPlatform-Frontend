@@ -3,9 +3,20 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import loginimage from '../public/loginimage.jpg';
 import logo from '../public/logo.png';
+import useAuth from '@/customhooks/useAuth';
 
 
 export default function Home() {
+
+  const { token, error, fetchToken, logout } = useAuth();
+  const[username, setUsername] = useState('');
+  const[password, setPassword] = useState('');
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    fetchToken(username, password);
+  }
+
 
 
 
@@ -29,10 +40,12 @@ export default function Home() {
           height={100} 
         />
         
-        <form  className="flex flex-col items-center w-full max-w-xs">
+        <form onSubmit={handleLogin} className="flex flex-col items-center w-full max-w-xs">
           <input 
             type="text" 
             placeholder="Enter your username" 
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
             
             className="mb-4 p-3 w-full border border-gray-300 rounded"
             required
@@ -41,6 +54,8 @@ export default function Home() {
           <input 
             type="password" 
             placeholder="Enter your password" 
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
            
             className="mb-4 p-3 w-full border border-gray-300 rounded"
             required
@@ -54,6 +69,9 @@ export default function Home() {
           >
             Login
           </button>
+
+          {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+          {token && <p className="text-green-500 text-sm mt-2">Login successful</p>}
           
           
         </form>
