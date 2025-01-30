@@ -31,7 +31,6 @@ function Page() {
   };
 
 
-
   return (
     <>
       <Navigation />

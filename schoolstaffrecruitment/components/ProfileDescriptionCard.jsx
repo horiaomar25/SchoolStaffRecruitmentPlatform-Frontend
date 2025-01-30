@@ -12,15 +12,13 @@ const ProfileDescriptionCard = () => {
     <>
       <div className="card w-96 bg-base-100 shadow-md relative p-4">
         <div className="card-body">
-          <span className="badge badge-xs badge-warning">Most Popular</span>
+         
           <div className="flex justify-between items-center">
-            <h2 className="text-3xl font-bold">Premium</h2>
-            <span className="text-xl">$29/mo</span>
+            <h2 className="text-3xl font-bold">About</h2>
+           
           </div>
 
-          <div className="mt-6">
-            <button className="btn btn-primary btn-block">Subscribe</button>
-          </div>
+        
         </div>
 
         {/* Button wrapping the SVG for better accessibility */}
