@@ -5,6 +5,7 @@ import Navigation from "../../components/Navigation";
 import Header from "../../components/DashBoardHeader";
 import WorkHistoryCard from "@/components/WorkHistoryCard";
 import ProfileCard from "@/components/ProfileCard";
+import useProfile from '@/customhooks/useProfile';
 
 function Page() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -22,6 +23,8 @@ function Page() {
     }
   }, [router]);
 
+  
+  const { data, loading, error } = useProfile();
   
   if (!isAuthenticated) {
     return <p> Not Authenicated...</p>;

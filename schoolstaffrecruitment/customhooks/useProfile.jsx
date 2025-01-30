@@ -7,32 +7,44 @@ const useProfile = () => {
 
   useEffect(() => {
     const fetchProfile = async () => {
-      setLoading(true);
+      const token = localStorage.getItem('token'); // Get the token from localStorage
+
+      if (!token) {
+        setError('Not authenticated');
+        setLoading(false);
+        return;
+      }
+
       try {
-        const response = await fetch(`http://localhost:8080/api/v1/profile/`); 
+        const response = await fetch(`http://localhost:8080/api/v1/profile/3`, {
+          method: 'GET',
+          headers: {
+            Authorization: `Bearer ${token}`, 
+            'Content-Type': 'application/json',
+          },
+        });
 
         if (!response.ok) {
-          throw new Error('Something went wrong');
+          throw new Error('Something went wrong with API');
         }
 
         const result = await response.json();
+        setData(result); 
         console.log(result);
 
-       
-
       } catch (error) {
-        setError(error.message);
+        setError(error.message); 
       } finally {
-        setLoading(false);
+        setLoading(false); 
       }
     };
 
- 
+    fetchProfile(); // Fetch profile when component mounts
 
-    fetchProfile();
-  }, []);
+  }, []); // Empty dependency array ensures this effect only runs once (on mount)
 
-  return { data, loading, error };
+  return { data, loading, error }; 
 };
 
 export default useProfile;
+

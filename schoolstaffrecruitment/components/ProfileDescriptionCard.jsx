@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 import ProfileDescriptionModal from './ProfileModal';
+import useProfile from '@/customhooks/useProfile';
 
-const ProfileDescriptionCard = () => {
+const ProfileDescriptionCard = ({data}) => {
   const [open, setOpen] = useState(false);
 
   const toggle = () => {
     setOpen(!open);
   };
 
+
+ 
+
   return (
     <>
       <div className="card w-96 bg-base-100 shadow-md relative p-4">
         <div className="card-body">
          
-          <div className="flex justify-between items-center">
-            <h2 className="text-3xl font-bold">About</h2>
+          <div className="flex flex-col ">
+            <h2 className="text-3xl font-bold text-center">About</h2>
+              <p>{data.profileDescription}</p>  
            
           </div>
 

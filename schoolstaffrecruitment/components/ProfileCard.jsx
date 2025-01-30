@@ -1,12 +1,19 @@
 import React, { useState } from 'react';
+import useProfile from '@/customhooks/useProfile';
 
-const ProfileCard = () => {
+const ProfileCard = ({data}) => {
 
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
     setOpen(!open);
   };
+
+
+  console.log(data);
+
+
+
 
     return (
         <div className="card bg-base-100 w-96 shadow-md relative">
@@ -17,8 +24,8 @@ const ProfileCard = () => {
               />
           </figure>
           <div className="card-body items-center text-center">
-              <h2 className="card-title">Name</h2>
-              <h3 className="card-title">Role</h3>
+               <h2 className="card-title">Name {data.firstName} </h2>  
+              <h3 className="card-title">Role: {data.position} </h3>
               <p>Experience in early years education</p>
           </div>
           <svg 
