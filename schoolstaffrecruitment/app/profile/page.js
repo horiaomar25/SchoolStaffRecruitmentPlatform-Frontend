@@ -6,8 +6,8 @@ import WorkHistoryCard from "../../components/WorkHistoryCard";
 import FeedbackCard from "@/components/FeedbackCard";
 import ProfileDescriptionCard from "@/components/ProfileDescriptionCard";
 import AssignmentCard from "@/components/AssignmentCard";
-import ProfileModal from "@/components/ProfileModal";
-
+import { useRouter } from 'next/navigation';
+import useAuth from '../../customhooks/useAuth';
 
 function Page() {
   const [showProfileDescription, setShowProfileDescription] = useState(false);
@@ -18,7 +18,7 @@ function Page() {
       setIsLargeScreen(window.innerWidth >= 1024);
     };
 
-    handleResize(); // Check the window size on initial render
+    handleResize(); 
     window.addEventListener("resize", handleResize);
     
     return () => {
@@ -30,11 +30,21 @@ function Page() {
     setShowProfileDescription(!showProfileDescription);
   };
 
+  const { token } = useAuth();
+  const router = useRouter();
+
+  useEffect(() => {
+    const savedToken = localStorage.getItem('token');
+    if (!savedToken) {
+      router.push('/'); // Redirect to home page if not authenticated
+    }
+  }, [token, router]);
+
 
   return (
     <>
       <Navigation />
-       <ProfileModal />
+
       <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
         {/* Column 1 */}
         <section className="grid justify-center lg:border lg:border-blue-500 space-y-4">

@@ -4,21 +4,25 @@ import Image from 'next/image';
 import loginimage from '../public/loginimage.jpg';
 import logo from '../public/logo.png';
 import useAuth from '@/customhooks/useAuth';
-
+import { useRouter } from 'next/navigation';
 
 export default function Home() {
-
   const { token, error, fetchToken, logout } = useAuth();
-  const[username, setUsername] = useState('');
-  const[password, setPassword] = useState('');
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    fetchToken(username, password);
-  }
+    await fetchToken(username, password); 
+  };
 
-
-
+  useEffect(() => {
+    if (token) {
+      // Redirect to the dashboard page upon successful login
+      router.push('/dashboard');
+    }
+  }, [token, router]); 
 
   return (
     <main className="flex h-screen">
@@ -46,7 +50,6 @@ export default function Home() {
             placeholder="Enter your username" 
             value={username}
             onChange={(e) => setUsername(e.target.value)}
-            
             className="mb-4 p-3 w-full border border-gray-300 rounded"
             required
           />
@@ -56,12 +59,9 @@ export default function Home() {
             placeholder="Enter your password" 
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-           
             className="mb-4 p-3 w-full border border-gray-300 rounded"
             required
           />
-          
-          
           
           <button 
             type="submit"
@@ -72,11 +72,8 @@ export default function Home() {
 
           {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
           {token && <p className="text-green-500 text-sm mt-2">Login successful</p>}
-          
-          
         </form>
       </div>
     </main>
   );
 }
-

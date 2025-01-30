@@ -1,18 +1,32 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-
+import { useRouter } from 'next/navigation'
 
 const Navigation = () => {
   // State to open and close mobile menu
   const [menuOpen, setMenuOpen] = useState(false);
- 
+
+  const router = useRouter();
 
   // Function to close mobile menu
   const closeMenu = () => {
     setMenuOpen(false);
   };
 
+  // Function to toggle mobile menu
+  const toggleMenu = () => {
+    setMenuOpen(!menuOpen);
+  };
+
+  // Handle logout
+  const handleLogout = () => {
+    // Clear token or any other logout logic
+    localStorage.removeItem('token'); // Example: Remove token from localStorage
+
+    // Redirect to login or homepage
+    router.push('/'); // You can replace this with the appropriate route for your app
+  };
 
   return (
     <div className="navbar bg-base-100 border-b border-base-200">
@@ -22,7 +36,7 @@ const Navigation = () => {
             tabIndex={0} 
             role="button" 
             className="btn btn-ghost lg:hidden" 
-            
+            onClick={toggleMenu} // Toggle menu on click
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -56,7 +70,7 @@ const Navigation = () => {
                   <Link href="/profile">Profile</Link>
                 </li>
                 <li className='text-black text-2xl font-semibold mt-8' onClick={closeMenu}>
-                  <Link href="/avaliability">Availability</Link>
+                  <Link href="/availability">Availability</Link>
                 </li>
               </ul>
             </div>
@@ -75,12 +89,16 @@ const Navigation = () => {
             <Link href='/profile'><span className='text-lg font-bold hover:text-blue-500'>Profile</span></Link>
           </li>
           <li>
-            <Link href='/avaliability'><span className='text-lg font-bold hover:text-blue-500'>Availability</span></Link>
+            <Link href='/availability'><span className='text-lg font-bold hover:text-blue-500'>Availability</span></Link>
           </li>
         </ul>
       </div>
+
+      {/* Logout Button */}
       <div className="navbar-end">
-        <a  className="btn hover:bg-red-500">Logout</a>
+        <button onClick={handleLogout} className="btn hover:bg-red-500">
+          Logout
+        </button>
       </div>
     </div>
   );

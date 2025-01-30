@@ -4,6 +4,8 @@ import Navigation from '../../components/Navigation';
 import AvaliabilityHeader from '../../components/AvaliabilityHeader';
 
 const page = () => {
+  
+
   return (
     <main >
       <Navigation />
