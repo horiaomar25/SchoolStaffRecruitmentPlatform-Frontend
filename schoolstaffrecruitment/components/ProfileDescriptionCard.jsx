@@ -13,15 +13,23 @@ const ProfileDescriptionCard = () => {
 
   const {profile, loading, error} = useProfile();
 
+  const sentences = profile?.profileDescription
+  ? profile.profileDescription.split('.').map((sentence) => sentence.trim()).filter((sentence) => sentence.length > 0)
+  : [];
+
    
   return (
     <>
     <section >
-    <h2 className="text-3xl font-bold text-center mb-5 ">About</h2>
-      <div className="card w-full p-4 bg-base-100 shadow-md border border-black">
+    <h2 className="text-3xl font-bold text-center  ">About</h2>
+      <div className="card w-full p-4 bg-base-100 shadow-md border border-black mb-8">
 
         <div className="card-body ">
-            <p>{profile?.profileDescription}</p>
+          { sentences.map((sentence, index) => (
+  <p key={index}>{sentence}.</p>
+
+          ))}
+          
         </div>
 
        

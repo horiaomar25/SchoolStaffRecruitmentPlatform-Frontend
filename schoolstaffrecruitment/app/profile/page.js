@@ -49,15 +49,17 @@ function Page() {
     <>
       <Navigation />
 
-      <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
+      <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4 items-start grid-auto-rows-min">
+
+      
         {/* Column 1 */}
-        <section className="grid justify-center lg:border lg:border-blue-500 space-y-4 max-h-screen ">
+        <section className="grid justify-center  space-y-4 max-h-screen ">
           <ProfileCard  />
           <FeedbackCard />
         </section>
 
         {/* Column 2 */}
-        <section className="grid justify-center  lg:border lg:border-blue-500 space-y-4 h-full lg:h-screen">
+        <section className="grid justify-center   space-y-4  lg:h-screen">
           <button
             onClick={toggleProfileDescription}
             className="btn btn-primary md:hidden lg:hidden"
@@ -70,7 +72,7 @@ function Page() {
         </section>
 
         {/* Column 3 */}
-        <section className="grid justify-center lg:border lg:border-blue-500 space-y-4">
+        <section className="grid justify-center space-y-4">
           <QualificationCard/>
           <WorkHistoryCard   />
         </section>
