@@ -1,13 +1,17 @@
 import React, { useState } from 'react';
 import ProfileDescriptionModal from './ProfileModal';
-import useProfile from '@/customhooks/useProfile';
 
-const ProfileDescriptionCard = ({data}) => {
+
+
+const ProfileDescriptionCard = () => {
   const [open, setOpen] = useState(false);
 
   const toggle = () => {
     setOpen(!open);
   };
+
+   
+
 
 
  
@@ -19,14 +23,13 @@ const ProfileDescriptionCard = ({data}) => {
          
           <div className="flex flex-col ">
             <h2 className="text-3xl font-bold text-center">About</h2>
-              <p>{data.profileDescription}</p>  
+               
            
           </div>
 
-        
         </div>
 
-        {/* Button wrapping the SVG for better accessibility */}
+       
         <button
           onClick={toggle}
           className="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-200 transition"

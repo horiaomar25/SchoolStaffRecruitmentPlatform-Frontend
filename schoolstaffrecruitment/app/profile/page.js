@@ -8,14 +8,15 @@ import ProfileDescriptionCard from "@/components/ProfileDescriptionCard";
 import AssignmentCard from "@/components/AssignmentCard";
 import { useRouter } from 'next/navigation';
 import useAuth from '../../customhooks/useAuth';
-import useProfile from '../../customhooks/useProfile';
+
 
 function Page() {
+
   const [showProfileDescription, setShowProfileDescription] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
-
-  const {data, loading, error} = useProfile();
-
+  const { token } = useAuth();
+  const router = useRouter();
+ 
   useEffect(() => {
     const handleResize = () => {
       setIsLargeScreen(window.innerWidth >= 1024);
@@ -33,15 +34,18 @@ function Page() {
     setShowProfileDescription(!showProfileDescription);
   };
 
-  const { token } = useAuth();
-  const router = useRouter();
+ 
 
   useEffect(() => {
     const savedToken = localStorage.getItem('token');
     if (!savedToken) {
-      router.push('/'); // Redirect to home page if not authenticated
+      router.push('/'); 
     }
   }, [token, router]);
+
+ 
+
+
 
 
   return (
@@ -51,7 +55,7 @@ function Page() {
       <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4">
         {/* Column 1 */}
         <section className="grid justify-center lg:border lg:border-blue-500 space-y-4">
-          <ProfileCard data={data} />
+          <ProfileCard  />
           <FeedbackCard />
         </section>
 
@@ -64,14 +68,14 @@ function Page() {
             {showProfileDescription ? "Hide Profile Description" : "Show Profile Description"}
           </button>
           {(showProfileDescription || isLargeScreen) && (
-            <ProfileDescriptionCard data={data} className="lg:h-screen" />
+            <ProfileDescriptionCard  className="lg:h-screen" />
           )}
         </section>
 
         {/* Column 3 */}
         <section className="grid justify-center lg:border lg:border-blue-500 space-y-4">
           {/* <AssignmentCard /> */}
-          <WorkHistoryCard data={data} />
+          <WorkHistoryCard   />
         </section>
       </main>
     </>

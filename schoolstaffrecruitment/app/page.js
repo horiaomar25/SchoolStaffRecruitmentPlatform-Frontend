@@ -19,7 +19,7 @@ export default function Home() {
 
   useEffect(() => {
     if (token) {
-      // Redirect to the dashboard page upon successful login
+     
       router.push('/dashboard');
     }
   }, [token, router]); 

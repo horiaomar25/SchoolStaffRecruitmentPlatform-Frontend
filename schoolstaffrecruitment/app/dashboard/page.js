@@ -5,7 +5,7 @@ import Navigation from "../../components/Navigation";
 import Header from "../../components/DashBoardHeader";
 import WorkHistoryCard from "@/components/WorkHistoryCard";
 import ProfileCard from "@/components/ProfileCard";
-import useProfile from '@/customhooks/useProfile';
+
 
 function Page() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -24,21 +24,30 @@ function Page() {
   }, [router]);
 
   
-  const { data, loading, error } = useProfile();
+
+ 
   
   if (!isAuthenticated) {
     return <p> Not Authenicated...</p>;
   }
 
   return (
-    <>
-      <main>
-        <Navigation />
-        <main>
-          <Header />
+    <> 
+    
+    <Navigation />
+      <main className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4'>
+       
+        <section>
           <ProfileCard />
-          <WorkHistoryCard />
-        </main>
+          <ProfileCard />
+          </section>
+
+          <section>
+             <WorkHistoryCard />
+             
+          </section>
+         
+        
       </main>
     </>
   );
