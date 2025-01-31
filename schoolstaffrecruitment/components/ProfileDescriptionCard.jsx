@@ -16,16 +16,12 @@ const ProfileDescriptionCard = () => {
    
   return (
     <>
-      <div className="card w-96 bg-base-100 shadow-md relative p-4">
-        <div className="card-body">
-         
-          <div className="flex flex-col ">
-            <h2 className="text-3xl font-bold text-center">About</h2>
-            <p>{profile?.profileDescription}</p>
-               
-           
-          </div>
+    <section >
+    <h2 className="text-3xl font-bold text-center mb-5 ">About</h2>
+      <div className="card w-full p-4 bg-base-100 shadow-md border border-black">
 
+        <div className="card-body ">
+            <p>{profile?.profileDescription}</p>
         </div>
 
        
@@ -51,7 +47,7 @@ const ProfileDescriptionCard = () => {
           </svg>
         </button>
       </div>
-
+</section>
       <ProfileDescriptionModal open={open} toggle={toggle} />
     </>
   );
