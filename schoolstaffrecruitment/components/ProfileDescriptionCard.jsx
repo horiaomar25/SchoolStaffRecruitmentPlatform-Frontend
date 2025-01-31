@@ -20,11 +20,11 @@ const ProfileDescriptionCard = () => {
    
   return (
     <>
-    <section >
-    <h2 className="text-3xl font-bold text-center  ">About</h2>
+  <div className='space-y-4'>
+    <h2 className="text-3xl font-bold text-center mb-auto ">About</h2>
       <div className="card w-full p-4 bg-base-100 shadow-md border border-black mb-8">
 
-        <div className="card-body ">
+        <div className="card-body space-y-4">
           { sentences.map((sentence, index) => (
   <p key={index}>{sentence}.</p>
 
@@ -55,7 +55,7 @@ const ProfileDescriptionCard = () => {
           </svg>
         </button>
       </div>
-</section>
+</div>
       <ProfileDescriptionModal open={open} toggle={toggle} />
     </>
   );

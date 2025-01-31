@@ -53,7 +53,7 @@ function Page() {
 
       
         {/* Column 1 */}
-        <section className="grid justify-center  space-y-4 max-h-screen ">
+        <section className="grid justify-center  space-y-4 max-h-screen mt-4">
           <ProfileCard  />
           <FeedbackCard />
         </section>

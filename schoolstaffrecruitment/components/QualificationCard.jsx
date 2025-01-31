@@ -13,9 +13,9 @@ const QualificationCard = () => {
   return (
     <>
 
-    <h2 className="text-3xl font-bold text-center ">Qualifications</h2>
+    <h2 className="text-3xl font-bold text-center mt-4  ">Qualifications</h2>
     
-    <div className='space-y-4'>
+    <div className='space-y-4 '>
       {profile.qualifications.map((qualification, index) => (
         <div className="card w-96 bg-base-100 border border-black card-xs shadow-md " key={index}>
           <div className="card-body">
