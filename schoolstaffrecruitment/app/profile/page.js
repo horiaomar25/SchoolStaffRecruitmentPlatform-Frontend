@@ -54,12 +54,14 @@ function Page() {
       
         {/* Column 1 */}
         <section className="grid justify-center  space-y-4 max-h-screen mt-4">
+        <h2 className="text-3xl font-bold text-center mb-auto ">Profile</h2>
           <ProfileCard  />
           <FeedbackCard />
         </section>
 
         {/* Column 2 */}
-        <section className="grid justify-center   space-y-4  lg:h-screen">
+        <section className="grid justify-center  item-center space-y-4 mr-4">
+          
           <button
             onClick={toggleProfileDescription}
             className="btn btn-primary md:hidden lg:hidden"
