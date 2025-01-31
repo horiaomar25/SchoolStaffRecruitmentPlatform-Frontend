@@ -8,6 +8,7 @@ import ProfileDescriptionCard from "@/components/ProfileDescriptionCard";
 import AssignmentCard from "@/components/AssignmentCard";
 import { useRouter } from 'next/navigation';
 import useAuth from '../../customhooks/useAuth';
+import QualificationCard from "@/components/QualificationCard";
 
 
 function Page() {
@@ -23,6 +24,7 @@ function Page() {
     };
 
     handleResize(); 
+    
     window.addEventListener("resize", handleResize);
     
     return () => {
@@ -35,17 +37,12 @@ function Page() {
   };
 
  
-
   useEffect(() => {
     const savedToken = localStorage.getItem('token');
     if (!savedToken) {
       router.push('/'); 
     }
   }, [token, router]);
-
- 
-
-
 
 
   return (
@@ -74,7 +71,7 @@ function Page() {
 
         {/* Column 3 */}
         <section className="grid justify-center lg:border lg:border-blue-500 space-y-4">
-          {/* <AssignmentCard /> */}
+          <QualificationCard/>
           <WorkHistoryCard   />
         </section>
       </main>

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import ProfileDescriptionModal from './ProfileModal';
+import {useProfile} from '../context/ProfileContext';
 
 
 
@@ -10,12 +11,9 @@ const ProfileDescriptionCard = () => {
     setOpen(!open);
   };
 
+  const {profile, loading, error} = useProfile();
+
    
-
-
-
- 
-
   return (
     <>
       <div className="card w-96 bg-base-100 shadow-md relative p-4">
@@ -23,6 +21,7 @@ const ProfileDescriptionCard = () => {
          
           <div className="flex flex-col ">
             <h2 className="text-3xl font-bold text-center">About</h2>
+            <p>{profile?.profileDescription}</p>
                
            
           </div>

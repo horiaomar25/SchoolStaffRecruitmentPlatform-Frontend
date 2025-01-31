@@ -11,22 +11,17 @@ function Page() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const router = useRouter();
 
-  // Check if the user is authenticated by checking the token in localStorage
+ 
   useEffect(() => {
     const token = localStorage.getItem('token');
-
-    // If there's no token or the token is invalid, redirect to login
     if (!token) {
       router.push('/');
+      return null; // should prevent flash of not Authenticated on screen
     } else {
-      setIsAuthenticated(true); // User is authenticated
+      setIsAuthenticated(true); 
     }
   }, [router]);
 
-  
-
- 
-  
   if (!isAuthenticated) {
     return <p> Not Authenicated...</p>;
   }

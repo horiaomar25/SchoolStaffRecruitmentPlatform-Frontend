@@ -23,7 +23,7 @@ export const ProfileProvider = ({children}) => {
                 const response = await fetch('http://localhost:8080/api/v1/profile/personal', {
                     method: 'GET',
                     headers: {
-                        Authorization: 'Bearer ${token}',
+                        Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json"
                         
                     },
@@ -42,6 +42,8 @@ export const ProfileProvider = ({children}) => {
             }
 
         };
+
+        fetchProfile();
 
     }, []);
 

@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
+import {useProfile} from '../context/ProfileContext';
 
 
 const ProfileCard = () => {
+
+  const { profile, loading, error } = useProfile();
+  console.log(profile);
+ 
+  
   const [open, setOpen] = useState(false);
  
 
@@ -9,27 +15,22 @@ const ProfileCard = () => {
     setOpen(!open);
   };
 
-  // Handling loading and error states
-  if (loading) {
-    return <p>Loading...</p>;
-  }
 
-  if (error) {
-    return <p>Error: {error}</p>;
-  }
 
   return (
     <div className="card bg-base-100 w-96 shadow-md relative">
-      <figure className="px-0 pt-0">
+      <figure className="px-10 pt-10">
         <img
-       
+       src="https://img.freepik.com/free-photo/office-happy-man-work_144627-6324.jpg?t=st=1738325283~exp=1738328883~hmac=1699125934aa9e028f11cff27ec2c0563945bc18c1602884c8b80f1711823c66&w=740"
+          alt="profile"
+          className="rounded-lg w-full h-60 object-cover"
          
         />
       </figure>
       <div className="card-body items-center text-center">
-        <h2 className="card-title">Name:</h2> 
-        <h3 className="card-title">Role:</h3>  
-        <p>{profile?.bio || "Experience in early years education"}</p> 
+        <h2 className="card-title">Name: {profile?.firstName} {profile?.lastName}</h2> 
+        <h3 className="card-title">Role: {profile?.position}</h3>  
+         
       </div>
       <svg 
         className="absolute bottom-2 right-2 w-6 h-6"

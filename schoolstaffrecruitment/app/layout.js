@@ -1,5 +1,5 @@
 import "./globals.css"; 
-import { ProfileProvider } from '../context/DataContext';  
+import { ProfileProvider } from '../context/ProfileContext';  
 
 export const metadata = {
   title: "SRS",
