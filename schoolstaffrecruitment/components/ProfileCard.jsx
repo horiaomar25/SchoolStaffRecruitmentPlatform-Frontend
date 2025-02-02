@@ -18,8 +18,8 @@ const ProfileCard = () => {
 
 
   return (
-  <div className="card bg-base-100 w-full shadow-md relative border border-black">
-      <figure className=" w-full px-4 py-4">
+  <div className="card bg-base-100 w-auto shadow-md relative border border-black">
+      <figure className=" w-auto px-4 py-4">
         <img
           src="https://img.freepik.com/free-photo/office-happy-man-work_144627-6324.jpg?t=st=1738325283~exp=1738328883~hmac=1699125934aa9e028f11cff27ec2c0563945bc18c1602884c8b80f1711823c66&w=740"
           alt="profile"

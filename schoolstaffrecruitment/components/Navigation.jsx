@@ -70,7 +70,7 @@ const Navigation = () => {
                   <Link href="/profile">Profile</Link>
                 </li>
                 <li className='text-black text-2xl font-semibold mt-8' onClick={closeMenu}>
-                  <Link href="/availability">Availability</Link>
+                  <Link href="/avaliability">Availability</Link>
                 </li>
               </ul>
             </div>
@@ -89,7 +89,10 @@ const Navigation = () => {
             <Link href='/profile'><span className='text-lg font-bold hover:text-blue-500'>Profile</span></Link>
           </li>
           <li>
-            <Link href='/availability'><span className='text-lg font-bold hover:text-blue-500'>Availability</span></Link>
+            <Link href='/avaliability'><span className='text-lg font-bold hover:text-blue-500'>Availability</span></Link>
+          </li>
+          <li>
+          <Link href='/assignments'><span className='text-lg font-bold hover:text-blue-500'>Assignments</span></Link>
           </li>
         </ul>
       </div>
