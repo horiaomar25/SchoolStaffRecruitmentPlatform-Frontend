@@ -1,5 +1,6 @@
 import React from 'react';
-import CalendarPage from './Calendar';
+import Calendar from './Calendar';
+import FullCalendar from './FullCalendar';
 
 
 const AvaliabilityHeader = () => {
@@ -7,7 +8,7 @@ const AvaliabilityHeader = () => {
     <div >
   
       <div className="mt-6">
-       
+      <FullCalendar />
       </div>
     </div>
   );

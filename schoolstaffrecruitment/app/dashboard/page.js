@@ -5,6 +5,8 @@ import Navigation from "../../components/Navigation";
 import Header from "../../components/DashBoardHeader";
 import WorkHistoryCard from "@/components/WorkHistoryCard";
 import ProfileCard from "@/components/ProfileCard";
+import Calendar from '@/components/Calendar';
+import AssignedCard from '@/components/AssignedCard';
 
 
 function Page() {
@@ -30,15 +32,16 @@ function Page() {
     <> 
     
     <Navigation />
-      <main className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4'>
+      <main className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 p-4'>
        
-        <section>
+        <section className='flex flex-col space-y-4' >
           <ProfileCard />
-          <ProfileCard />
-          </section>
+          
+        </section>
 
-          <section>
-             <WorkHistoryCard />
+          <section className='flex flex-col space-y-4' >
+            <AssignedCard/>
+            <Calendar/>
              
           </section>
          
