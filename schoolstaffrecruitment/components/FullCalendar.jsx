@@ -2,10 +2,8 @@
 import React, { useRef, useEffect } from 'react';
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
-
 const FullCalendar = () => {
   const calendarRef = useRef(null);
-
   useEffect(() => {
     if (calendarRef.current) {
       
@@ -13,7 +11,6 @@ const FullCalendar = () => {
         plugins: [dayGridPlugin], 
         initialView: 'dayGridMonth', 
       });
-
       
       calendar.render();
     }
@@ -25,12 +22,10 @@ const FullCalendar = () => {
       }
     };
   }, []);
-
   return (
     <div>
       <div ref={calendarRef} /> 
     </div>
   );
 };
-
 export default FullCalendar;
