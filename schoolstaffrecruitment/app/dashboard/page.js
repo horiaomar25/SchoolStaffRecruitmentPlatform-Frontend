@@ -40,7 +40,7 @@ function Page() {
         </section>
 
           <section className='flex flex-col space-y-4' >
-            <AssignedCard/>
+            
             <Calendar/>
              
           </section>

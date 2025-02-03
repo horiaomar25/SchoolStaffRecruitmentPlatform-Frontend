@@ -1,18 +1,48 @@
-import React from 'react'
+"use client";
+import React, { useState } from 'react'
+import useAssignment from '@/customhooks/useAssignment';
+import AssignmentModal from './AssignmentModal';
 
 const AssignmentCard = () => {
-  return (
-    <div className="card shadow-md bg-neutral text-neutral-content w-full">
-  <div className="card-body items-center text-center">
-    <h2 className="card-title">Assignment</h2>
-    <p>We are using cookies for no reason.</p>
-    <div className="card-actions justify-end">
-      <button className="btn btn-primary">Accept</button>
-      <button className="btn btn-ghost">Deny</button>
-    </div>
-  </div>
-</div>
-  )
-}
+  const { assignments, loading, error } = useAssignment(); // Fetch assignment data
+  const[open, setOpen] = useState(false);
+
+  const handleModal= () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+  }
+
+  // Handle loading and error states
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error loading assignments</div>;
+
+ 
+  if (assignments && assignments.length > 0) {
+    const assignment = assignments[0]; 
+  
+    return (
+      <div className="card bg-primary text-primary-content w-96 border border-black">
+        <div className="card-body">
+          <span className='text-black font-bold'>{assignment.position}</span>
+          
+          <h3>{assignment.school.schoolName}</h3>
+          <div className="card-actions justify-end">
+            <button onClick={handleModal}className="btn hover:bg-blue-400">View</button> 
+          </div>
+          {open && (
+          <AssignmentModal handleClose={handleClose} />
+         
+        )}
+        </div>
+      </div>
+    );
+  }}
+
+  
+  
+
 
 export default AssignmentCard

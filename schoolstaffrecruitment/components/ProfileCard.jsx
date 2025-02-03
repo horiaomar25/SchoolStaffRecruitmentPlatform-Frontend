@@ -5,7 +5,7 @@ import {useProfile} from '../context/ProfileContext';
 const ProfileCard = () => {
 
   const { profile, loading, error } = useProfile();
-  console.log(profile);
+  
  
   
   const [open, setOpen] = useState(false);

@@ -2,6 +2,7 @@
 import React, { useRef, useEffect } from 'react';
 import { Calendar } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
+
 const FullCalendar = () => {
   const calendarRef = useRef(null);
   useEffect(() => {

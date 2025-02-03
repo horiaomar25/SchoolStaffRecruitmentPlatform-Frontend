@@ -49,7 +49,7 @@ function Page() {
     <>
       <Navigation />
 
-      <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4 items-start grid-auto-rows-min border border-red">
+      <main className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 p-4 ">
 
       
         {/* Column 1 */}

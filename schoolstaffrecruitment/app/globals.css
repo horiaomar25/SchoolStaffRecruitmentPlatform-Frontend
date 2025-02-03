@@ -2,17 +2,5 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Add custom styles for unavailable dates */
-/* Custom style for unavailable dates */
-.bg-500 {
-    background-color: #ff4d4d !important;  /* Red background */
-    opacity: 0.3; /* Make it a bit transparent to distinguish from other dates */
-  }
-  
-  /* Optional: Hover effect to make it more interactive */
-  .fc-day-bg.bg-500:hover {
-    background-color: #ff3333 !important;  /* Darker red on hover */
-  }
-  
-  
+
   

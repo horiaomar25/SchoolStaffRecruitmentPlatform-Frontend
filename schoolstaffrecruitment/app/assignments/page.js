@@ -9,7 +9,10 @@ const page = () => {
   return (
     <main >
       <Navigation />
-      <AssignmentCard/>
+      <main className='grid grid-cols-3 m-10'>
+        <AssignmentCard/>
+      </main>
+      
       
     </main>
   );
