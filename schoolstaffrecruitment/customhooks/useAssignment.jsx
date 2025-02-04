@@ -32,6 +32,7 @@ const useAssignment = () => {
         
 
         setAssignments(data);
+        setLoading(false);
         
       } catch (error) {
         console.error("Error fetching assignments:", error);
