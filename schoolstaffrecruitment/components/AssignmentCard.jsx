@@ -39,7 +39,7 @@ const AssignmentCard = () => {
 
 
           {open && (
-          <AssignmentModal selectedAssignment={assignment} handleClose={handleClose} />
+          <AssignmentModal assignment={selectedAssignment} handleClose={handleClose} />
          
         )}
 
