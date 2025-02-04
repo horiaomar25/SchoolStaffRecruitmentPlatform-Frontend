@@ -1,21 +1,19 @@
 import React from 'react'
 
-const AssignmentModal = ({ assignment, handleClose }) => {
-  console.log(assignment);
+const AssignmentModal = ({  assignment, handleClose }) => {
+ 
 
-  // if (assignment == null || assignment == undefined) {
-  //   return <div>Assignment not found</div>
-
-  // }
-
+ console.log(assignment)
 
 
 
   return (
     <div className="fixed inset-0 z-10 flex items-center justify-center bg-gray-800 bg-opacity-50">
 
-<div className="card bg-white z-10 w-96 shadow-xl">
+<div className="card bg-white  w-96 shadow-xl">
       <div className="card-body">
+        <h2 className='font-bold text-lg'>{assignment.postion}</h2>
+        
         <div className="card-actions justify-end">
           <button onClick={handleClose} className="btn btn-square btn-sm">
             <svg
@@ -32,8 +30,7 @@ const AssignmentModal = ({ assignment, handleClose }) => {
             </svg>
           </button>
         </div>
-
-        <p>{assignment.postion}</p>
+<h2>{assignment.position}</h2>
         
       </div>
     </div>

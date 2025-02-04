@@ -7,7 +7,7 @@ const AssignmentCard = () => {
   const { assignments, loading, error } = useAssignment(); // Fetch assignment data
   const[open, setOpen] = useState(false);
   const[selectedAssignment, setSelectedAssignment] = useState(null); //
- 
+  
   // Passes the selected assignment to the modal
   const handleModal= (assignment) => {
     setSelectedAssignment(assignment)
@@ -34,7 +34,7 @@ const AssignmentCard = () => {
           
           <h3>{assignment.school.schoolName}</h3>
           <div className="card-actions justify-end">
-            <button onClick={handleModal}className="btn hover:bg-blue-400">View</button> 
+            <button onClick={() => handleModal(assignment)}className="btn hover:bg-blue-400">View</button> 
           </div>
 
 
