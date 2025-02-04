@@ -6,8 +6,11 @@ import AssignmentModal from './AssignmentModal';
 const AssignmentCard = () => {
   const { assignments, loading, error } = useAssignment(); // Fetch assignment data
   const[open, setOpen] = useState(false);
-
-  const handleModal= () => {
+  const[selectedAssignment, setSelectedAssignment] = useState(null); //
+ 
+  // Passes the selected assignment to the modal
+  const handleModal= (assignment) => {
+    setSelectedAssignment(assignment)
     setOpen(true)
   }
 
@@ -20,11 +23,12 @@ const AssignmentCard = () => {
   if (error) return <div>Error loading assignments</div>;
 
  
-  if (assignments && assignments.length > 0) {
-    const assignment = assignments[0]; 
+ 
   
     return (
-      <div className="card bg-primary text-primary-content w-96 border border-black">
+      <>
+      {assignments.map((assignment, index) => (
+  <div key={index} className="card bg-primary text-primary-content w-96 border border-black">
         <div className="card-body">
           <span className='text-black font-bold'>{assignment.position}</span>
           
@@ -32,17 +36,25 @@ const AssignmentCard = () => {
           <div className="card-actions justify-end">
             <button onClick={handleModal}className="btn hover:bg-blue-400">View</button> 
           </div>
+
+
           {open && (
-          <AssignmentModal handleClose={handleClose} />
+          <AssignmentModal selectedAssignment={assignment} handleClose={handleClose} />
          
         )}
+
         </div>
       </div>
+
+
+
+    ))}
+   </> 
     );
-  }}
+ 
 
   
-  
+}
 
 
 export default AssignmentCard

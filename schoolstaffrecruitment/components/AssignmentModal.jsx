@@ -1,6 +1,6 @@
 import React from 'react'
 
-const AssignmentModal = () => {
+const AssignmentModal = ({assignment, handleClose}) => {
   return (
     <div>AssignmentModal</div>
   )
