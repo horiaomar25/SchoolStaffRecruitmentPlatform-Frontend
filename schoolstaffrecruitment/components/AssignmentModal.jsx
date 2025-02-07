@@ -22,12 +22,13 @@ const AssignmentModal = ({ assignment, handleClose }) => {
       <div className="card text-primary-content w-full md:w-8/12 lg:w-9/12 xl:w-7/12 border bg-white border-black z-10 relative">
         {/* Modal Content */}
         {/* Close Button */}
-        <button
+        {/* <button
           className="absolute top-4 right-4 text-2xl text-gray-700 hover:text-gray-900"
           onClick={handleClose}
         >
           &times;
-        </button>
+        </button> */}
+        <button onClick={handleClose} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 
         <div className="card-body p-6 max-h-[80vh] overflow-y-auto">
 
@@ -48,7 +49,9 @@ const AssignmentModal = ({ assignment, handleClose }) => {
 
             <section>
               {/** Image of School Logo */}
-              <Image src={assignment.school?.schoolPicture} alt="school logo" width={300} height={100} />
+              <Image src={assignment.school?.schoolPicture} alt="school logo" width={150} 
+  height={100} 
+   />
 
               <div className='mt-4 leading-9'>
                 {/* School name */}

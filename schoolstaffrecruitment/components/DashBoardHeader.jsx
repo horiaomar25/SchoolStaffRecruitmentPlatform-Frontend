@@ -1,31 +1,21 @@
-
-import CalendarPage from './Calendar'
-
+import React from 'react';
+import Stats from './Stats';
 
 const DashBoardHeader = () => {
   return (
     <>
-<section className='flex flex-row justify-end mr-7 gap-4 mt-4'>
-    
-    
-    <div className="card bg-neutral border border-black text-neutral-content h-screen">
-        <div className="card-body items-center text-center">
-          <h2 className="card-title">Cookies!</h2>
-          <p>We are using cookies for no reason.</p>
-
+      <div className="hero bg-base-200 w-full">
+        <div className="hero-content flex-col lg:flex-row">
+       
+           <Stats />
+          
+          <div>
+           
+          </div>
         </div>
       </div>
-      
-      <div className="card bg-neutral border border-black text-neutral-content w-96">
-        <div className="card-body items-center text-center">
-          <h2 className="card-title">Cookies!</h2>
-          <p>We are using cookies for no reason.</p>
+    </>
+  );
+};
 
-        </div>
-      </div>
-      </section>
-      </>
-  )
-}
-
-export default DashBoardHeader 
+export default DashBoardHeader;
