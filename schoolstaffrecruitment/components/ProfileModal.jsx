@@ -17,5 +17,3 @@ const ProfileDescriptionModal = ({ open, toggle }) => {
 };
 
 export default ProfileDescriptionModal;
-
-

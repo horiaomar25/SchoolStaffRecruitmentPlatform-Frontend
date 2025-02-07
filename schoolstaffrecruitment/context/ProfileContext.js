@@ -47,6 +47,9 @@ export const ProfileProvider = ({children}) => {
 
     }, []);
 
+  
+
+    
     return (
         <ProfileContext.Provider value={{profile, loading, error}}>
             {children}

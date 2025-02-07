@@ -1,42 +1,72 @@
-import React from 'react'
+"use client";
+import React from 'react';
+import Image from 'next/image';
 
-const AssignmentModal = ({  assignment, handleClose }) => {
- 
+const AssignmentModal = ({ assignment, handleClose }) => {
 
- console.log(assignment)
+  if (!assignment) return null;
 
 
+  const sentences = assignment.assignmentDescription.split('.');
+
+  // Slice the sentences into paragraphs
+  const sentencesPerParagraph = 3;
+  const paragraphs = [];
+  for (let i = 0; i < sentences.length; i += sentencesPerParagraph) {
+    paragraphs.push(sentences.slice(i, i + sentencesPerParagraph).join('.') + '.');
+  }
 
   return (
-    <div className="fixed inset-0 z-10 flex items-center justify-center bg-gray-800 bg-opacity-50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
+      {/* Overlay */}
+      <div className="card text-primary-content w-full md:w-8/12 lg:w-9/12 xl:w-7/12 border bg-white border-black z-10 relative">
+        {/* Modal Content */}
+        {/* Close Button */}
+        <button
+          className="absolute top-4 right-4 text-2xl text-gray-700 hover:text-gray-900"
+          onClick={handleClose}
+        >
+          &times;
+        </button>
 
-<div className="card bg-white  w-96 shadow-xl">
-      <div className="card-body">
-        <h2 className='font-bold text-lg'>{assignment.postion}</h2>
-        
-        <div className="card-actions justify-end">
-          <button onClick={handleClose} className="btn btn-square btn-sm">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12" />
-            </svg>
-          </button>
+        <div className="card-body p-6 max-h-[80vh] overflow-y-auto">
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            <div>
+              <h2 className="card-title">{assignment.position}</h2>
+
+
+
+              <div>
+                {paragraphs.map((para, index) => (
+                  <p key={index} className="mb-4">{para}</p>
+                ))}
+              </div>
+            </div>
+
+
+            <section>
+              {/** Image of School Logo */}
+              <Image src={assignment.school?.schoolPicture} alt="school logo" width={600} height={100} />
+
+              <div className='mt-4'>
+                {/* School name */}
+                <p><strong>School:</strong> {assignment.school?.schoolName}</p>
+                 {/* School address */}
+                <p><strong>School Address:</strong> {assignment.school?.schoolAddress}</p>
+               {/* Dates in different format day,date and year in writing */}
+                <p><strong>Start Date:</strong> {new Date(assignment.startDate).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
+
+                <p><strong>End Date:</strong> {new Date(assignment.endDate).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
+
+              </div>
+            </section>
+          </div>
         </div>
-<h2>{assignment.position}</h2>
-        
       </div>
     </div>
-    </div>
-    
-  )
-}
+  );
+};
 
-export default AssignmentModal
+export default AssignmentModal;
