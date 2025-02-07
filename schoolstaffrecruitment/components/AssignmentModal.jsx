@@ -48,9 +48,9 @@ const AssignmentModal = ({ assignment, handleClose }) => {
 
             <section>
               {/** Image of School Logo */}
-              <Image src={assignment.school?.schoolPicture} alt="school logo" width={600} height={100} />
+              <Image src={assignment.school?.schoolPicture} alt="school logo" width={300} height={100} />
 
-              <div className='mt-4'>
+              <div className='mt-4 leading-9'>
                 {/* School name */}
                 <p><strong>School:</strong> {assignment.school?.schoolName}</p>
                  {/* School address */}
@@ -61,6 +61,11 @@ const AssignmentModal = ({ assignment, handleClose }) => {
                 <p><strong>End Date:</strong> {new Date(assignment.endDate).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
 
               </div>
+              <div className='flex  mt-4'>
+                <button className="btn btn-primary mr-6">Accept</button>
+              <button className="btn btn-primary">Deny</button>
+              </div>
+              
             </section>
           </div>
         </div>
