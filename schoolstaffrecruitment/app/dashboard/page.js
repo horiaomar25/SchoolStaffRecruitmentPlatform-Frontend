@@ -38,7 +38,7 @@ function Page() {
       <main className="grid grid-cols-1 lg:grid-cols-4 gap-6 p-10">
         
         {/* Profile Picture on the left */}
-        <div className="col-span-1 lg:col-span-1 flex justify-center">
+        <section className="col-span-1 lg:col-span-1 flex justify-center">
           <Image 
             src="https://img.freepik.com/free-photo/office-happy-man-work_144627-6324.jpg" 
             alt="profile" 
@@ -46,17 +46,17 @@ function Page() {
             width={300} 
             height={300}
           />
-        </div>
+        </section>
 
        
-        <div className="col-span-1 lg:col-span-3">
+        <section className="col-span-1 lg:col-span-3">
           <Stats />
           <div className='flex flex-row justify-evenly'>
              <TimeSheetCard />
             <AssignedCard />
           </div>
          
-        </div>
+        </section>
 
        
       
