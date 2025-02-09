@@ -1,8 +1,19 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAssignment from '@/customhooks/useAssignment';
+import AssignmentDetails from './AssignmentDetails';
 
 
 const AssignedCard = () => {
+
+  const [open, setOpen] = useState(false);
+
+  const handleModal = () => {
+    setOpen(true);
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+  }
 
   const {acceptedAssignment,fetchAcceptedAssignment, loading, error} = useAssignment();
 
@@ -23,6 +34,8 @@ const AssignedCard = () => {
     return <div>No accepted assignment found.</div>
 
   }
+
+
   
   return (
     <>
@@ -39,7 +52,10 @@ const AssignedCard = () => {
           <h2 className="card-title">{acceptedAssignment.school?.schoolName}</h2>
           <h3>{acceptedAssignment.position}</h3>
           <div className="card-actions">
-            <button className="btn btn-primary mt-6">View Assignment</button>
+            <button onClick={handleModal} className="btn btn-primary mt-6">View Assignment</button>
+            {acceptedAssignment && open ? (
+              <AssignmentDetails acceptedAssignment={acceptedAssignment} handleClose={handleClose} />
+            ) : null}
           </div>
         </div>
       </div>
