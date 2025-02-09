@@ -23,6 +23,7 @@ const useAssignment = () => {
         
         setLoading(true); 
         const response = await fetch("http://localhost:8080/api/v1/assignments/unassigned", {
+          method:'GET',
           headers: {
             Authorization: `Bearer ${token}`,
             "Content-Type": "application/json",
