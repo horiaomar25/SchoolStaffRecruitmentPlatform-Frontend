@@ -37,15 +37,17 @@ const useAssignment = () => {
       } catch (error) {
         console.error("Error fetching assignments:", error);
         setError(error.message); // gives more details about the error 
-        setLoading(false); 
+       
+      } finally {
+        setLoading(false);
       }
     };
 
-    
 
     fetchUnassignedAssignment();
   }, []); 
-   
+
+ 
   return { unassignedAssignments, loading, error };
 };
 

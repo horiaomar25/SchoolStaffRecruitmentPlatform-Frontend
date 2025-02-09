@@ -4,13 +4,13 @@ import useAssignment from '../customhooks/useAssignment';
 
 const Stats = () => {
     const { profile, loading: profileLoading, error: profileError } = useProfile();
-  const { assignments, loading: assignmentsLoading, error: assignmentsError } = useAssignment();
-
-  if (profileLoading || assignmentsLoading) {
+  const { unassignedAssignments, loading: unassignedAssignmentLoading, error: unassignedAssignmentError } = useAssignment();
+console.log(unassignedAssignments.length)
+  if (profileLoading || unassignedAssignmentLoading) {
     return <div>Loading...</div>;
   }
 
-  if (profileError || assignmentsError) {
+  if (profileError || unassignedAssignmentError) {
     return <div>Error loading data</div>;
   }
   return (
@@ -18,7 +18,7 @@ const Stats = () => {
     <div className="card shadow">
       <div className="card-body">
         <h2 className="card-title">Assignments Available</h2>
-        <p className="text-xl">{assignments.length}</p>
+        <p className="text-xl">{unassignedAssignments.length}</p>
         <p className="text-sm text-gray-500">Jan 1st - Feb 1st</p>
       </div>
     </div>

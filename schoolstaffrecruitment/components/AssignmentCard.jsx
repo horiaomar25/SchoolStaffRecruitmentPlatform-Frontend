@@ -4,13 +4,16 @@ import useAssignment from '@/customhooks/useAssignment';
 import AssignmentModal from './AssignmentModal';
 
 const AssignmentCard = () => {
-  const { assignments, loading, error } = useAssignment(); // Fetch assignment data
+
+  const { unassignedAssignments, loading, error } = useAssignment(); 
   const[open, setOpen] = useState(false);
-  const[selectedAssignment, setSelectedAssignment] = useState(null); //
+  const[selectedAssignment, setSelectedAssignment] = useState(null); 
+
+ 
   
   // Passes the selected assignment to the modal
-  const handleModal= (assignment) => {
-    setSelectedAssignment(assignment)
+  const handleModal= (unassigned) => {
+    setSelectedAssignment(unassigned)
     setOpen(true)
   }
 
@@ -27,14 +30,14 @@ const AssignmentCard = () => {
   
     return (
       <>
-      {assignments.map((assignment, index) => (
+      {unassignedAssignments.map((unassigned, index) => (
   <div key={index} className="card bg-primary text-primary-content w-96 border border-black">
         <div className="card-body">
-          <span className='text-black font-bold'>{assignment.position}</span>
+          <span className='text-black font-bold'>{unassigned.position}</span>
           
-          <h3>{assignment.school.schoolName}</h3>
+          <h3>{unassigned.school?.schoolName}</h3>
           <div className="card-actions justify-end">
-            <button onClick={() => handleModal(assignment)}className="btn hover:bg-blue-400">View</button> 
+            <button onClick={() => handleModal(unassigned)}className="btn hover:bg-blue-400">View</button> 
           </div>
 
 

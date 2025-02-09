@@ -6,6 +6,7 @@ const AssignmentModal = ({ assignment, handleClose }) => {
 
   if (!assignment) return null;
 
+  console.log("This is Assignment" + assignment);
 
   const sentences = assignment.assignmentDescription.split('.');
 
