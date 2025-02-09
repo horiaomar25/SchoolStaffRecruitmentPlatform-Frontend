@@ -3,20 +3,21 @@ import React, { useEffect, useState } from "react";
 
 const useAssignment = () => {
   // state to hold the assignment
-  const [assignments, setAssignments] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [unassignedAssignments, setUnassignedAssignments] = useState([]);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   // useEffect to fetch the assignment
   useEffect(() => {
-    const fetchAssignment = async () => {
+    const fetchUnassignedAssignment = async () => {
       try {
         const token = localStorage.getItem("token");
 
         if (!token) {
           throw new Error("User not authenticated");
         }
-
+        
+        setLoading(true); 
         const response = await fetch("http://localhost:8080/api/v1/assignments/unassigned", {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -25,29 +26,27 @@ const useAssignment = () => {
         });
 
         if (!response.ok) {
-          throw new Error("Failed to fetch assignment");
+          throw new Error("Failed to fetch unassigned assignment");
         }
 
         const data = await response.json();
         
-
-        setAssignments(data);
-        setLoading(false);
+        setUnassignedAssignments(data);
+        
         
       } catch (error) {
         console.error("Error fetching assignments:", error);
-        setError(error); 
+        setError(error.message); // gives more details about the error 
         setLoading(false); 
       }
     };
 
-    fetchAssignment();
-
     
-  
+
+    fetchUnassignedAssignment();
   }, []); 
    
-  return { assignments, loading, error };
+  return { unassignedAssignments, loading, error };
 };
 
 export default useAssignment;
