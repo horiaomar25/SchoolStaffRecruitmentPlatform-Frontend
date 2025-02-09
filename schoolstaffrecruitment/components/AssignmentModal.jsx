@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-const AssignmentModal = ({ assignment, handleClose }) => {
+const AssignmentModal = ({ assignment, handleClose, acceptedAssignment }) => {
 
   if (!assignment) return null;
 
@@ -15,6 +15,11 @@ const AssignmentModal = ({ assignment, handleClose }) => {
   const paragraphs = [];
   for (let i = 0; i < sentences.length; i += sentencesPerParagraph) {
     paragraphs.push(sentences.slice(i, i + sentencesPerParagraph).join('.') + '.');
+  }
+
+  const handleAccept = async () => {
+    await acceptedAssignment(assignment.id);
+    handleClose();
   }
 
   return (
@@ -66,8 +71,8 @@ const AssignmentModal = ({ assignment, handleClose }) => {
 
               </div>
               <div className='flex  mt-4'>
-                <button className="btn btn-primary mr-6">Accept</button>
-              <button className="btn btn-primary">Deny</button>
+                <button onClick={handleAccept} className="btn btn-primary mr-6">Accept</button>
+              <button onClick={handleClose} className="btn btn-primary">Deny</button>
               </div>
               
             </section>

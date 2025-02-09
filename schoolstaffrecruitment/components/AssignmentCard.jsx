@@ -5,7 +5,7 @@ import AssignmentModal from './AssignmentModal';
 
 const AssignmentCard = () => {
 
-  const { unassignedAssignments, loading, error } = useAssignment(); 
+  const { unassignedAssignments, loading, error, acceptedAssignment } = useAssignment(); 
   const[open, setOpen] = useState(false);
   const[selectedAssignment, setSelectedAssignment] = useState(null); 
 
@@ -42,7 +42,7 @@ const AssignmentCard = () => {
 
 
           {open && (
-          <AssignmentModal assignment={selectedAssignment} handleClose={handleClose} />
+          <AssignmentModal assignment={selectedAssignment} handleClose={handleClose} acceptedAssignment={acceptedAssignment} />
          
         )}
 
