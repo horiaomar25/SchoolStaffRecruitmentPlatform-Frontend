@@ -5,7 +5,7 @@ const useAssignment = () => {
   // state to hold the assignment
   const [unassignedAssignments, setUnassignedAssignments] = useState([]);
 
-  const[acceptedAssignments, setAcceptedAssignments] = useState([]);
+  const[acceptedAssignment, setAcceptedAssignment] = useState(null);
 
   const [loading, setLoading] = useState(false);
 
@@ -52,7 +52,7 @@ const useAssignment = () => {
   }, []); 
 
   // accept assignment function to add the assignment to the user
-  const acceptedAssignment = async (assignmentId) => {
+  const acceptAssignment = async (assignmentId) => {
 
     try{
       const token = localStorage.getItem("token");
@@ -74,12 +74,13 @@ const useAssignment = () => {
       }
      
       const updatedAssignments = await response.json();
-
+console.log("Accepted assignment:", updatedAssignments);
       // update the state remove the accepted assignment from the unassignedAssignment array
       setUnassignedAssignments((prevAssignments) => prevAssignments.filter((assignment) => assignment.id !== assignmentId));
 
       // add the accepted assignment data into the state
-      setAcceptedAssignments(updatedAssignments)
+      setAcceptedAssignment(updatedAssignments)
+      
 
 
     } catch (error) {
@@ -93,8 +94,46 @@ const useAssignment = () => {
 
   };
 
+  // Get the accepted assignments
+  const fetchAcceptedAssignment = async () => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        throw new Error("User not authenticated");
+      }
+
+      setLoading(true);
+      const response = await fetch(`http://localhost:8080/api/v1/assignments/accepted`,{
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if(!response.ok) {
+        throw new Error("Failed to fetch accepted assignment");
+      }
+
+      const data = await response.json();
+
+      setAcceptedAssignment(data);
+      
+
+
+    } catch (error) {
+      console.error("Error fetching accepted assignments:", error);
+      setError(error.message);
+
+    } finally {
+      setLoading(false);
+    }
+  }
+
+
  
-  return { unassignedAssignments, acceptedAssignment, loading, error };
+  return { unassignedAssignments, acceptAssignment, fetchAcceptedAssignment, acceptedAssignment, loading, error };
 };
 
 export default useAssignment;
