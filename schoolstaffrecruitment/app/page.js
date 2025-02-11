@@ -15,7 +15,7 @@ export default function Home() {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true);
+   
     await fetchToken(username, password); 
   };
 
