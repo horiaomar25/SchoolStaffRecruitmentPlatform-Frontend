@@ -69,9 +69,7 @@ const Navigation = () => {
                 <li className='text-black text-2xl font-semibold mt-8' onClick={closeMenu}>
                   <Link href="/profile">Profile</Link>
                 </li>
-                <li className='text-black text-2xl font-semibold mt-8' onClick={closeMenu}>
-                  <Link href="/avaliability">Availability</Link>
-                </li>
+               
               </ul>
             </div>
           )}
@@ -88,9 +86,7 @@ const Navigation = () => {
           <li>
             <Link href='/profile'><span className='text-lg font-bold hover:text-blue-500 '>Profile</span></Link>
           </li>
-          <li>
-            <Link href='/avaliability'><span className='text-lg font-bold hover:text-blue-500'>Availability</span></Link>
-          </li>
+          
           <li>
           <Link href='/assignments'><span className='text-lg font-bold hover:text-blue-500'>Assignments</span></Link>
           </li>
