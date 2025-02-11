@@ -3,7 +3,7 @@ import Navigation from '@/components/Navigation';
 import AssignmentCard from '@/components/AssignmentCard';
 
 
-const page = () => {
+const Page = () => {
   
 
   return (
@@ -18,4 +18,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

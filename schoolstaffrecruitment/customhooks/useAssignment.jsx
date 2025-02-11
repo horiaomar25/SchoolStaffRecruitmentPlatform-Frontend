@@ -1,68 +1,65 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 
 const useAssignment = () => {
-  // state to hold the assignment
+
   const [unassignedAssignments, setUnassignedAssignments] = useState([]);
 
-  const[acceptedAssignment, setAcceptedAssignment] = useState(null);
+  const [acceptedAssignment, setAcceptedAssignment] = useState(null);
+
+  const [timeSheet, setTimeSheet] = useState(null);
 
   const [loading, setLoading] = useState(false);
 
   const [error, setError] = useState(null);
 
-  // useEffect to fetch the assignment
-  useEffect(() => {
-    const fetchUnassignedAssignment = async () => {
-      try {
-        const token = localStorage.getItem("token");
+  const fetchUnassignedAssignment = async () => {
 
-        if (!token) {
-          throw new Error("User not authenticated");
-        }
-        
-        setLoading(true); 
-        const response = await fetch("http://localhost:8080/api/v1/assignments/unassigned", {
-          method:'GET',
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch unassigned assignment");
-        }
-
-        const data = await response.json();
-        
-        setUnassignedAssignments(data);
-        
-        
-      } catch (error) {
-        console.error("Error fetching assignments:", error);
-        setError(error.message); // gives more details about the error 
-       
-      } finally {
-        setLoading(false);
-      }
-    };
-
-
-    fetchUnassignedAssignment();
-  }, []); 
-
-  // accept assignment function to add the assignment to the user
-  const acceptAssignment = async (assignmentId) => {
-
-    try{
+    try {
       const token = localStorage.getItem("token");
 
       if (!token) {
         throw new Error("User not authenticated");
       }
 
-      const response = await fetch(`http://localhost:8080/api/v1/assignments/${assignmentId}/accept`,{
+      setLoading(true);
+      const response = await fetch("http://localhost:8080/api/v1/assignments/unassigned", {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch unassigned assignment");
+      }
+
+      const data = await response.json();
+      setUnassignedAssignments(data);
+    } catch (error) {
+      console.error("Error fetching assignments:", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Trigger the fetchUnassignedAssignment function when the component mounts
+  useEffect(() => {
+    fetchUnassignedAssignment();
+  }, []);
+
+  const acceptAssignment = async (assignmentId) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        throw new Error("User not authenticated");
+      }
+
+      setLoading(true);
+      const response = await fetch(`http://localhost:8080/api/v1/assignments/${assignmentId}/accept`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -73,30 +70,28 @@ const useAssignment = () => {
       if (!response.ok) {
         throw new Error("Failed to accept assignment");
       }
-     
-      const updatedAssignments = await response.json();
-console.log("Accepted assignment:", updatedAssignments);
-      // update the state remove the accepted assignment from the unassignedAssignment array
+
+      const updatedAssignment = await response.json();
+
+      // Remove the accepted assignment from the unassigned assignments
       setUnassignedAssignments((prevAssignments) => prevAssignments.filter((assignment) => assignment.id !== assignmentId));
 
-      // add the accepted assignment data into the state
-      setAcceptedAssignment(updatedAssignments)
-      
+      // Takes the accepted assignment and updates the state
+      setAcceptedAssignment(updatedAssignment);
 
+      // Create the timesheet for the accepted assignment
+      await createTimeSheet(assignmentId);
+     
 
     } catch (error) {
       console.error("Error accepting assignment:", error);
       setError(error.message);
-
     } finally {
       setLoading(false);
     }
-
-
   };
 
-  // Get the accepted assignments
-  const fetchAcceptedAssignment = async () => {
+  const createTimeSheet = async (assignmentId) => {
     try {
       const token = localStorage.getItem("token");
 
@@ -105,7 +100,38 @@ console.log("Accepted assignment:", updatedAssignments);
       }
 
       setLoading(true);
-      const response = await fetch(`http://localhost:8080/api/v1/assignments/accepted`,{
+      const response = await fetch(`http://localhost:8080/api/v1/assignments/${assignmentId}/timesheet`, {
+        method: 'POST',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to create timesheet");
+      }
+
+      const data = await response.json();
+      setTimeSheet(data);
+    } catch (error) {
+      console.error("Error creating timesheet:", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const fetchTimeSheet = useCallback (async (assignmentId) => {
+    try {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        throw new Error("User not authenticated");
+      }
+
+      setLoading(true);
+      const response = await fetch(`http://localhost:8080/api/v1/assignments/${assignmentId}/gettimesheet`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -113,28 +139,76 @@ console.log("Accepted assignment:", updatedAssignments);
         },
       });
 
-      if(!response.ok) {
-        throw new Error("Failed to fetch accepted assignment");
+      if (!response.ok) {
+        throw new Error("Failed to fetch timesheet");
+      }
+
+      const data = await response.json();
+
+      setTimeSheet(data); // set the timesheet to the data
+
+    } catch (error) {
+      console.error("Error viewing timesheet", error);
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }, []);
+
+  // memoize the fetchAcceptedAssignment function so it does not keep refetching the data 
+  const fetchAcceptedAssignment = useCallback(async () => {
+    try {
+      const token = localStorage.getItem('token');
+      if (!token) {
+        throw new Error("User not authenticated");
+      }
+
+      setLoading(true); // set loading to true while waiting for api response
+
+      const response = await fetch(`http://localhost:8080/api/v1/assignments/accepted`, {
+        method: 'GET',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok) {
+        setAcceptedAssignment(null); // set accepted assignment to null if there is an error
+        return;
       }
 
       const data = await response.json();
 
       setAcceptedAssignment(data);
-      
-
 
     } catch (error) {
       console.error("Error fetching accepted assignments:", error);
       setError(error.message);
-
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
+  return {
+    unassignedAssignments, // array of unassigned assignments
 
- 
-  return { unassignedAssignments, acceptAssignment, fetchAcceptedAssignment, acceptedAssignment, loading, error };
+    acceptAssignment,// function to accept the assignment
+
+    fetchAcceptedAssignment, // function to fetch the accepted assignment
+
+    acceptedAssignment, // the accepted assignment as an object
+
+    fetchUnassignedAssignment, // function to fetch the unassigned assignment and update the state( unassignedAssignments)
+
+    timeSheet, // the timesheet as an object
+
+    fetchTimeSheet,
+
+    loading, // boolean to check if the data is loading
+
+    error // error message
+  };
 };
 
 export default useAssignment;

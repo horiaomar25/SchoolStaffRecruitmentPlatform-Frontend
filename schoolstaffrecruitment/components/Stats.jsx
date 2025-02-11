@@ -4,8 +4,8 @@ import useAssignment from '../customhooks/useAssignment';
 
 const Stats = () => {
     const { profile, loading: profileLoading, error: profileError } = useProfile();
-  const { unassignedAssignments, loading: unassignedAssignmentLoading, error: unassignedAssignmentError } = useAssignment();
-console.log(unassignedAssignments.length)
+     const { unassignedAssignments, acceptAssignment, loading: unassignedAssignmentLoading, error: unassignedAssignmentError } = useAssignment();
+
   if (profileLoading || unassignedAssignmentLoading) {
     return <div>Loading...</div>;
   }
@@ -19,15 +19,15 @@ console.log(unassignedAssignments.length)
       <div className="card-body">
         <h2 className="card-title">Assignments Available</h2>
         <p className="text-xl">{unassignedAssignments.length}</p>
-        <p className="text-sm text-gray-500">Jan 1st - Feb 1st</p>
+      
       </div>
     </div>
   
     <div className="card shadow">
       <div className="card-body">
         <h2 className="card-title">Current Assignment</h2>
-        <p className="text-xl">4,200</p>
-        <p className="text-sm text-green-500">↗︎ 400 (22%)</p>
+        <p className="text-xl">{acceptAssignment.length}</p>
+       
       </div>
     </div>
   
@@ -35,7 +35,7 @@ console.log(unassignedAssignments.length)
       <div className="card-body">
         <h2 className="card-title">Completed Assignment</h2>
         <p className="text-xl">{profile.workHistory.length}</p>
-        <p className="text-sm text-red-500">↘︎ 90 (14%)</p>
+       
       </div>
     </div>
   </div>

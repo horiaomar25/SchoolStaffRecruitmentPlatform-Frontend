@@ -1,30 +1,45 @@
 "use client";
-import React, { useEffect, useState } from 'react';
+import React, { use, useCallback, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Navigation from "../../components/Navigation";
-import DashBoardHeader from '../../components/DashBoardHeader';
 import TimeSheetCard from "@/components/TimeSheetCard";
 import Image from 'next/image';
-import Calendar from '@/components/Calendar';
-
-import { useProfile } from '@/context/ProfileContext';
 import Stats from '@/components/Stats';
 import AssignedCard from '@/components/AssignedCard';
+import useAssignment from '@/customhooks/useAssignment';
+
 
 function Page() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const router = useRouter();
-  const { profile, loading, error } = useProfile();
 
+  // useAssignment hook to get accepted assignment to card on dashboard
+  const { acceptedAssignment, fetchAcceptedAssignment, timeSheet, fetchTimeSheet  } = useAssignment();
+  
+  // checks if user is authenticated
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // router from next
+  const router = useRouter();
+  
+  
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (!token) {
       router.push('/');
       return null;
     } else {
-      setIsAuthenticated(true);
+      setIsAuthenticated(true); // Mark user as authenticated
+      fetchAcceptedAssignment(); // Fetch the accepted assignment when the component mounts
+      
     }
-  }, [router]);
+  },[fetchAcceptedAssignment, router]); // re-run the effect when the function changes
+
+  useEffect(() => {
+    // check if the accepted assignment exists and fetch the timesheet
+    if(acceptedAssignment) {
+      fetchTimeSheet(acceptedAssignment.id);
+    }
+  }, [acceptedAssignment, fetchTimeSheet]);
+
 
   if (!isAuthenticated) {
     return <p>Not Authenticated...</p>;
@@ -32,7 +47,7 @@ function Page() {
 
   return (
     <>
-      <Navigation />
+     <Navigation />
       
       {/* Main container with grid for layout */}
       <main className="grid grid-cols-1 lg:grid-cols-4 gap-6 p-10">
@@ -42,30 +57,26 @@ function Page() {
           <Image 
             src="https://img.freepik.com/free-photo/office-happy-man-work_144627-6324.jpg" 
             alt="profile" 
-            className="w-full rounded-lg shadow-2xl object-cover"
+            className="w-70 object-cover"
             width={300} 
             height={300}
           />
         </section>
-
-       
+        {/* Stats, TimeSheetCard and Assignment card on right */}
         <section className="col-span-1 lg:col-span-3">
           <Stats />
-          <div className='flex flex-row justify-evenly'>
-             <TimeSheetCard />
-            <AssignedCard />
+          <div className='flex flex-row justify-evenly mt-3'>
+            <div className='w-80 h-80'> 
+              <TimeSheetCard timeSheet={timeSheet} />
+            </div>
+            <div className='w-80 h-80'> 
+              <AssignedCard acceptedAssignment={acceptedAssignment}  />
+            </div>
           </div>
-         
         </section>
-
-       
-      
-
       </main>
     </>
   );
 }
 
 export default Page;
-
-

@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import useAssignment from '@/customhooks/useAssignment';
+import React, { useState, useEffect } from 'react';
 import AssignmentDetails from './AssignmentDetails';
+import EmptyAssignedCard from './EmptyAssignedCard';
 
 
-const AssignedCard = () => {
+const AssignedCard = ({acceptedAssignment, assignedLoading, assignedError}) => {
 
   const [open, setOpen] = useState(false);
 
+ 
   const handleModal = () => {
     setOpen(true);
   }
@@ -15,42 +16,33 @@ const AssignedCard = () => {
     setOpen(false);
   }
 
-  const {acceptedAssignment,fetchAcceptedAssignment, loading, error} = useAssignment();
-
-  useEffect(() => {
-    fetchAcceptedAssignment();
-
-  },[])
-
-  if(loading){
+  if(assignedLoading){
     return <div>Loading...</div>
   }
 
-  if(error){
+  if(assignedError){
     return <div>Error</div>
   }
 
   if(!acceptedAssignment){
-    return <div>No accepted assignment found.</div>
+    return <EmptyAssignedCard/>
 
   }
 
-
-  
   return (
     <>
     
-      <div  className="card bg-base-100 w-96 shadow-xl">
+    <div className="card bg-base-100 w-96 shadow-xl border border-black">
         <figure className="px-10 pt-10">
           <img
             src={acceptedAssignment.school?.schoolPicture}
             alt="S"
-            className="rounded-xl border border-black shadow-sm p-10"
+            className="rounded-xl w-40 h-40 object-cover"
           />
         </figure>
         <div className="card-body items-center text-center">
           <h2 className="card-title">{acceptedAssignment.school?.schoolName}</h2>
-          <h3>{acceptedAssignment.position}</h3>
+        
           <div className="card-actions">
             <button onClick={handleModal} className="btn btn-primary mt-6">View Assignment</button>
             {acceptedAssignment && open ? (
@@ -65,3 +57,4 @@ const AssignedCard = () => {
 
 }
 export default AssignedCard;
+
