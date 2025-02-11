@@ -1,14 +1,11 @@
 import React from 'react'
 import {useProfile} from '../context/ProfileContext';
 
-const QualificationCard = () => {
+const QualificationCard = ({profile}) => {
 
-  const { profile, loading, error } = useProfile();
 
-  if(loading) return <p>Loading...</p>
 
-  if(error) return <p>Error...</p>
-  
+ 
 
   return (
     <>

@@ -11,9 +11,11 @@ export default function Home() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+  
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     await fetchToken(username, password); 
   };
 

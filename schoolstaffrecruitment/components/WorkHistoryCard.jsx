@@ -4,14 +4,10 @@ import {useProfile} from '../context/ProfileContext';
 
 import Image from 'next/image';
 
-const WorkHistoryCard = () => {
+const WorkHistoryCard = ({profile}) => {
 
-  const { profile, loading, error } = useProfile();
 
-  if(loading) return <p>Loading...</p>
 
-  if(error) return <p>Error...</p>
-  
 
   return (
     <>

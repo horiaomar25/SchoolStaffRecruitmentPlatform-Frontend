@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import ProfileDescriptionModal from './ProfileModal';
-import {useProfile} from '../context/ProfileContext';
 
 
 
-const ProfileDescriptionCard = () => {
+
+const ProfileDescriptionCard = ({profile}) => {
   const [open, setOpen] = useState(false);
 
   const toggle = () => {
     setOpen(!open);
   };
 
-  const {profile, loading, error} = useProfile();
+  
 
   const sentences = profile?.profileDescription
   ? profile.profileDescription.split('.').map((sentence) => sentence.trim()).filter((sentence) => sentence.length > 0)

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import {useProfile} from '../context/ProfileContext';
 
 
-const ProfileCard = () => {
-  const { profile, loading, error } = useProfile();
+const ProfileCard = ({profile}) => {
+  
 
   return (
     <div className="card bg-base-100 max-w-md shadow-md relative border border-black">
