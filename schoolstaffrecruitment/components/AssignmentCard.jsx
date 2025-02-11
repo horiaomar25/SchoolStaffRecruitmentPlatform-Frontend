@@ -2,6 +2,7 @@
 import React, { useState } from 'react'
 import useAssignment from '@/customhooks/useAssignment';
 import AssignmentModal from './AssignmentModal';
+import Loading from './Loading';
 
 const AssignmentCard = () => {
 
@@ -28,7 +29,7 @@ const AssignmentCard = () => {
 
   // Handle loading and error states
   if (loading){
-    return <div>Loading...</div>
+    return <Loading/>
   } 
 
   if (error) {

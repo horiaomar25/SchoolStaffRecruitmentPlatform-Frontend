@@ -7,6 +7,7 @@ import Image from 'next/image';
 import Stats from '@/components/Stats';
 import AssignedCard from '@/components/AssignedCard';
 import useAssignment from '@/customhooks/useAssignment';
+import Loading from '@/components/Loading';
 
 
 function Page() {
@@ -42,7 +43,7 @@ function Page() {
 
 
   if (!isAuthenticated) {
-    return <p>Not Authenticated...</p>;
+    return <Loading/>;
   }
 
   return (
