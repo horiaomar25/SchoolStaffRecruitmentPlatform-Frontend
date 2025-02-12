@@ -2,11 +2,13 @@
 import React from 'react';
 import Image from 'next/image';
 
-const AssignmentModal = ({ assignment, handleClose, onAcceptance, acceptAssignment }) => {
+const AssignmentModal = ({ assignment, handleClose, onAcceptance, acceptAssignment, createTimeSheet }) => {
 
   if (!assignment) {
     return null;
   }
+
+  
 
   // Splits the assignment description from the full stops.
   const sentences = assignment.assignmentDescription.split('.');
@@ -22,6 +24,7 @@ const AssignmentModal = ({ assignment, handleClose, onAcceptance, acceptAssignme
   const handleAccept = async () => {
     try {
       await acceptAssignment(assignment.id);
+      await createTimeSheet(assignment.id);
       onAcceptance();
       handleClose();
     } catch (error) {

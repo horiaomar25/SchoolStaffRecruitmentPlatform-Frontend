@@ -1,4 +1,5 @@
 "use client";
+import { create } from "domain";
 import React, { useEffect, useState, useCallback } from "react";
 
 const useAssignment = () => {
@@ -203,7 +204,9 @@ const useAssignment = () => {
 
     timeSheet, // the timesheet as an object
 
-    fetchTimeSheet,
+    fetchTimeSheet, // get the timesheet
+
+    createTimeSheet, // create the timesheet
 
     loading, // boolean to check if the data is loading
 

@@ -93,12 +93,31 @@ const Navigation = () => {
         </ul>
       </div>
 
-      {/* Logout Button */}
-      <div className="navbar-end">
-        <button onClick={handleLogout} className="btn hover:bg-red-500">
-          Logout
-        </button>
-      </div>
+
+      
+  <div className="navbar-end">
+      <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>Logout</button>
+<dialog id="my_modal_1" className="modal">
+  <div className="modal-box bg-white">
+    <h3 className="font-bold text-lg">Logout</h3>
+    <p className="py-4">Would you like to logout?</p>
+    <div className="modal-action">
+      <form method="dialog">
+      <div className="card-actions justify-center flex items-center">
+      <button onClick={handleLogout} className="btn btn-primary hover:bg-blue-500 w-20">Yes</button>
+      <button className="btn btn-primary hover:bg-blue-500">Cancel</button>
+    </div>
+
+     
+      </form>
+    </div>
+  </div>
+</dialog>
+ </div>
+    
+    
+        
+     
     </div>
   );
 };

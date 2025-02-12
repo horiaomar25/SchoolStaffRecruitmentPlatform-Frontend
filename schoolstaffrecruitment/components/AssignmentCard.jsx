@@ -6,7 +6,7 @@ import Loading from './Loading';
 
 const AssignmentCard = () => {
 
-  const { unassignedAssignments, loading, error, acceptAssignment, fetchUnassignedAssignment } = useAssignment(); 
+  const { unassignedAssignments, loading, error, acceptAssignment, fetchUnassignedAssignment, createTimeSheet } = useAssignment(); 
 
   const[open, setOpen] = useState(false);
 
@@ -55,6 +55,7 @@ const AssignmentCard = () => {
           handleClose={handleClose} 
           acceptAssignment={acceptAssignment}
           onAcceptance={handleAssignmentAccepted} 
+          createTimeSheet={createTimeSheet}
           />
          
         )}

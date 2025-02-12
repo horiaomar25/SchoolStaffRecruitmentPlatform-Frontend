@@ -20,7 +20,7 @@ function Page() {
 
   // router from next
   const router = useRouter();
-  
+   console.log(acceptedAssignment)
   
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -37,7 +37,7 @@ function Page() {
   useEffect(() => {
     // check if the accepted assignment exists and fetch the timesheet
     if(acceptedAssignment) {
-      fetchTimeSheet(acceptedAssignment.id);
+      fetchTimeSheet(acceptedAssignment.assignmentId);
     }
   }, [acceptedAssignment, fetchTimeSheet]);
 
