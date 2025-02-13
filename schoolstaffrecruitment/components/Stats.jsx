@@ -29,7 +29,7 @@ const Stats = ({acceptedAssignment}) => {
     <div className="card shadow">
       <div className="card-body">
         <h2 className="card-title">Current Assignment</h2>
-        <p className="text-xl">{acceptedAssignment.schoolDTO?.schoolName}</p>
+        <p className="text-xl"></p>
        
       </div>
     </div>
