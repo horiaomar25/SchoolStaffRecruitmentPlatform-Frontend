@@ -28,9 +28,10 @@ const ProfileDescriptionModal = ({ open, toggle }) => {
         </form>
         <h3 className="font-bold text-lg mb-2">Profile Description</h3>
         <textarea 
-        className="textarea w-full border border-black" placeholder="Profile Card"
-        value={description}
-        onChange={(e) => setDescription(e.target.value)}
+          className="textarea w-full h-40 border border-black resize-none"
+          placeholder="Profile Card"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         ></textarea>
         <button onClick={handleSubmit} className="btn btn-primary mt-4">Save</button>
       </div>

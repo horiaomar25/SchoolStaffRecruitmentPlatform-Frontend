@@ -15,35 +15,14 @@ function Page() {
   // Use profile data from context
   const { profile, loading, error } = useProfile(); // Fetch profile, loading, and error states
   const [showProfileDescription, setShowProfileDescription] = useState(false);
-  const [isLargeScreen, setIsLargeScreen] = useState(false);
   const { token } = useAuth(); // Get auth token from the useAuth hook
   const router = useRouter();
-
-  // Check if the user is authenticated and handle screen resize
-  useEffect(() => {
-    const handleResize = () => {
-      setIsLargeScreen(window.innerWidth >= 1024);
-    };
-
-    handleResize(); // Initial check on load
-
-    window.addEventListener("resize", handleResize); // Listen for window resize
-
-    return () => {
-      window.removeEventListener("resize", handleResize); // Clean up the event listener
-    };
-  }, []);
-
-  // Toggle profile description visibility
-  const toggleProfileDescription = () => {
-    setShowProfileDescription(!showProfileDescription);
-  };
 
   // Check authentication and redirect if no token is found
   useEffect(() => {
     const savedToken = localStorage.getItem('token');
     if (!savedToken) {
-      router.push('/'); // Redirect to login page if no token is found
+      router.push('/'); 
     }
   }, [token, router]);
 
@@ -71,22 +50,27 @@ function Page() {
         </section>
 
         {/* Column 2 */}
-        <section className="grid justify-center  item-center space-y-4 ">
+        <section className="grid justify-center item-center space-y-4 ">
           <button
-            onClick={toggleProfileDescription}
+            onClick={() => setShowProfileDescription(!showProfileDescription)}
             className="btn btn-primary md:hidden lg:hidden"
           >
             {showProfileDescription ? "Hide Profile Description" : "Show Profile Description"}
           </button>
-          {(showProfileDescription || isLargeScreen) && (
+          <div className="hidden md:block">
             <ProfileDescriptionCard profile={profile} className="lg:h-screen" /> 
+          </div>
+          {showProfileDescription && (
+            <div className="md:hidden">
+              <ProfileDescriptionCard profile={profile} />
+            </div>
           )}
         </section>
 
         {/* Column 3 */}
         <section className="grid justify-center item-center space-y-4">
-          <QualificationCard profile={profile} /> {/* Pass profile data */}
-          <WorkHistoryCard profile={profile} /> {/* Pass profile data */}
+          <QualificationCard profile={profile} /> 
+          <WorkHistoryCard profile={profile} /> 
         </section>
       </main>
     </>

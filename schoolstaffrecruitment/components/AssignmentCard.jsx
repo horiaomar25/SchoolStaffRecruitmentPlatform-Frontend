@@ -3,8 +3,9 @@ import React, { useState } from 'react'
 import useAssignment from '@/customhooks/useAssignment';
 import AssignmentModal from './AssignmentModal';
 import Loading from './Loading';
+import { on } from 'events';
 
-const AssignmentCard = () => {
+const AssignmentCard = ({ onAcceptance }) => {
 
   const { unassignedAssignments, loading, error, acceptAssignment, fetchUnassignedAssignment,  acceptedAssignment } = useAssignment(); 
 
@@ -22,27 +23,21 @@ const AssignmentCard = () => {
     setOpen(false);
   }
 
-  // Refetch unassigned assignments after accepting an assignment
-  const handleAssignmentAccepted = () => {
-    fetchUnassignedAssignment();
+  // Handle assignment acceptance
+  const handleAssignmentAccepted = async () => {
+    await acceptAssignment(selectedAssignment.id)
+    onAcceptance();
   }
 
-  // Handle loading and error states
+  // Handle loading states
   if (loading){
     return <Loading/>
   } 
 
   if (error) {
-    return <h2 className='font-bold text-center'>Error loading assignments. Please refresh.</h2>
+    return <h2 className='font-bold text-center'>Error loading assignments. Please refresh your browser.</h2>
   }
 
-  if (acceptedAssignment) {
-    return (
-      <div className="w-full flex justify-center item-center">
-        <h2 className="text-xl text-center font-bold text-red-500">You have already accepted an assignment.</h2>
-      </div>
-    );
-  }
 
   
     return (

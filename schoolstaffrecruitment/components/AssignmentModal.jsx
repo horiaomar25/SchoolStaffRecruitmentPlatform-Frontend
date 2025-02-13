@@ -1,14 +1,13 @@
 "use client";
-import React from 'react';
+import{useState, useEffect} from 'react';
 import Image from 'next/image';
+import useAssignment from '@/customhooks/useAssignment';
 
 const AssignmentModal = ({ assignment, handleClose, onAcceptance, acceptAssignment }) => {
 
   if (!assignment) {
     return null;
   }
-
-  
 
   // Splits the assignment description from the full stops.
   const sentences = assignment.assignmentDescription.split('.');
@@ -24,13 +23,13 @@ const AssignmentModal = ({ assignment, handleClose, onAcceptance, acceptAssignme
   const handleAccept = async () => {
     try {
       await acceptAssignment(assignment.id);
-     
       onAcceptance();
       handleClose();
     } catch (error) {
       console.error("Error accepting assignment:", error);
     }
   };
+
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
@@ -67,7 +66,7 @@ const AssignmentModal = ({ assignment, handleClose, onAcceptance, acceptAssignme
 
               {/** Accept and Deny buttons */}
               <div className='flex  mt-4'>
-                <button onClick={handleAccept} className="btn btn-primary mr-6">Accept</button>
+                <button onClick={handleAccept} className="btn btn-primary mr-6" >Accept</button>
                 <button onClick={handleClose} className="btn btn-primary">Deny</button>
               </div>
 

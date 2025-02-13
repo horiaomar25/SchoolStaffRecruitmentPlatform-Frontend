@@ -7,8 +7,6 @@ const AssignedCard = ({acceptedAssignment, assignedLoading, assignedError}) => {
 
   const [open, setOpen] = useState(false);
 
-  
-
  
   const handleModal = () => {
     setOpen(true);
@@ -30,8 +28,6 @@ const AssignedCard = ({acceptedAssignment, assignedLoading, assignedError}) => {
     return <EmptyAssignedCard/>
 
   }
-
-  console.log(acceptedAssignment.schoolDTO?.schoolPicture)
 
   return (
     <>

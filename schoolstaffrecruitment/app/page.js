@@ -5,6 +5,7 @@ import loginimage from '../public/loginimage.jpg';
 import logo from '../public/logo.png';
 import useAuth from '@/customhooks/useAuth';
 import { useRouter } from 'next/navigation';
+import SuccessfulLogin from '@/components/SuccessfulLogin';
 
 export default function Home() {
   const { token, error, fetchToken, logout } = useAuth();
@@ -73,7 +74,7 @@ export default function Home() {
             </button>
   
             {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
-            {token && <p className="text-green-500 text-sm mt-2">Login successful</p>}
+            {token && <SuccessfulLogin />}
           </form>
         </div>
       </main>

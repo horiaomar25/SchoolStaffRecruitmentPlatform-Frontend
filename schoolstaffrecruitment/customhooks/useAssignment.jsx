@@ -1,5 +1,5 @@
 "use client";
-import { create } from "domain";
+
 import React, { useEffect, useState, useCallback } from "react";
 
 const useAssignment = () => {
@@ -37,10 +37,15 @@ const useAssignment = () => {
       }
 
       const data = await response.json();
+
       setUnassignedAssignments(data);
+      
     } catch (error) {
+
       console.error("Error fetching assignments:", error);
+
       setError(error.message);
+
     } finally {
       setLoading(false);
     }
@@ -74,8 +79,7 @@ const useAssignment = () => {
 
       const updatedAssignment = await response.json();
 
-      // Remove the accepted assignment from the unassigned assignments
-      setUnassignedAssignments((prevAssignments) => prevAssignments.filter((assignment) => assignment.id !== assignmentId));
+      
 
       // Takes the accepted assignment and updates the state
       setAcceptedAssignment(updatedAssignment);
@@ -150,7 +154,9 @@ const useAssignment = () => {
 
     } catch (error) {
       console.error("Error viewing timesheet", error);
+
       setError(error.message);
+
     } finally {
       setLoading(false);
     }
@@ -175,7 +181,7 @@ const useAssignment = () => {
       });
 
       if (!response.ok) {
-        setAcceptedAssignment(null); // set accepted assignment to null if there is an error
+        setAcceptedAssignment(null); 
         return;
       }
 
@@ -206,7 +212,7 @@ const useAssignment = () => {
 
     fetchTimeSheet, // get the timesheet
 
-    createTimeSheet, // create the timesheet
+   setAcceptedAssignment, // set the accepted assignment
 
     loading, // boolean to check if the data is loading
 

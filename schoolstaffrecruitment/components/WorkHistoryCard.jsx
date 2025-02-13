@@ -12,25 +12,22 @@ const WorkHistoryCard = ({profile}) => {
   return (
     <>
 
-    <h2 className="text-3xl font-bold text-center ">Work History</h2>
-    
-    <div className='space-y-2'>
-      {profile.workHistory.map((work, index) => (
-        <div className="card w-full bg-base-100 border border-black card-xs shadow-md " key={index}>
-          <div className="card-body">
-              <h2 className="card-title"></h2>
+<div>
+      <h2 className="text-3xl font-bold text-center">Work History</h2>
+      <div className='space-y-2'>
+        {profile.workHistory.map((work, index) => (
+          <div className="card w-full bg-base-100 border border-black card-xs shadow-md flex flex-row items-center p-4" key={index}>
+            <Image src={work.school.schoolPicture} alt={work.school.schoolName} width={70} height={70} className="mr-4" />
+            <div className="card-body">
               <h3 className='font-bold text-2xl'>{work.role}</h3>
               <p>{work.school.schoolName}</p>
-              <Image src={work.school.schoolPicture} alt={work.school.schoolName} width={100} height={100} />
-              <p>{work.duration}</p>
-              <div className="justify-end card-actions">
-              </div>
+              <p > {work.duration}</p>
+              <div className="justify-end card-actions"></div>
+            </div>
           </div>
-        </div>
-      ))}
-           
+        ))}
       </div>
-      
+    </div>
       </>
   )
 }

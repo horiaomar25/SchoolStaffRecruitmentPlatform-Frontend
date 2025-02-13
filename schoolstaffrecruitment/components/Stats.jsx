@@ -14,7 +14,7 @@ const Stats = ({acceptedAssignment}) => {
 
 
   if (profileError || unassignedAssignmentError) {
-    return <div>Error loading data</div>;
+    return <h2 className="font-bold  text-center">Error loading data. Please refresh</h2>;
   }
   return (
     <><div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -28,8 +28,8 @@ const Stats = ({acceptedAssignment}) => {
   
     <div className="card shadow">
       <div className="card-body">
-        <h2 className="card-title">Current Assignment</h2>
-        <p className="text-xl"></p>
+        <h2 className="card-title">Current Role</h2>
+        <p className="text-xl">Year 1 Teacher</p>
        
       </div>
     </div>

@@ -2,6 +2,7 @@ import React from 'react'
 import Image from 'next/image';
 import Link from 'next/link';
 
+
 const AssignmentDetails = ({ acceptedAssignment, handleClose }) => {
 
   const sentences = acceptedAssignment.assignmentDescription.split('.');
@@ -28,9 +29,6 @@ const AssignmentDetails = ({ acceptedAssignment, handleClose }) => {
 
           <div>
             <h2 className="card-title">{acceptedAssignment.position}</h2>
-
-
-
             <div>
               {paragraphs.map((para, index) => (
                 <p key={index} className="mb-4">{para}</p>
@@ -42,7 +40,7 @@ const AssignmentDetails = ({ acceptedAssignment, handleClose }) => {
           <section>
             {/** Image of School Logo */}
             <Image src={acceptedAssignment.schoolDTO?.schoolPicture} alt="school logo" width={150} 
-height={100} 
+         height={100} 
  />
 
             <div className='mt-4 leading-9'>
@@ -54,7 +52,9 @@ height={100}
               <p><strong>Start Date:</strong> {new Date(acceptedAssignment.startDate).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
 
               <p><strong>End Date:</strong> {new Date(acceptedAssignment.endDate).toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}</p>
-               <Link className="font-bold underline"href={acceptedAssignment.schoolDTO?.schoolWebsite}>Website</Link>
+
+            
+               <Link target="_blank" className="font-bold underline"href={acceptedAssignment.schoolDTO?.schoolWebsite}>Website</Link>
 
             </div>
             
