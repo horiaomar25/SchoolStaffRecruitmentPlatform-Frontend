@@ -5,8 +5,9 @@ import TimeSheet from './TimeSheet';
 
 import EmptyTimeSheetCard from './EmptyTimeSheetCard';
 
-const TimeSheetCard = ({timeSheet, loading, error}) => {
+const TimeSheetCard = ({timesheet, loading, error}) => {
  
+  
 
   const [open, setOpen] = useState(false);
   
@@ -27,7 +28,7 @@ const TimeSheetCard = ({timeSheet, loading, error}) => {
 
   }
 
-  if(!timeSheet) {
+  if(!timesheet) {
     return <EmptyTimeSheetCard/>
   }
 
@@ -47,7 +48,7 @@ const TimeSheetCard = ({timeSheet, loading, error}) => {
         
       </div>
     </div>
-    { open && <TimeSheet handleClose={handleClose} timeSheet={timeSheet}/>}
+    { open && <TimeSheet handleClose={handleClose} timesheet={timesheet}/>}
   </div>
   )
 }

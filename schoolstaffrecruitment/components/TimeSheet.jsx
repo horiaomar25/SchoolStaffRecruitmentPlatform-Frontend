@@ -1,8 +1,8 @@
 import React from 'react';
 
-const TimeSheet = ({ handleClose, timeSheet }) => {
+const TimeSheet = ({ handleClose, timesheet }) => {
   
-  const { timeSheetDates } = timeSheet;
+  const { timeSheetDates } = timesheet;
 
  
 

@@ -31,6 +31,8 @@ const AssignedCard = ({acceptedAssignment, assignedLoading, assignedError}) => {
 
   }
 
+  console.log(acceptedAssignment.schoolDTO?.schoolPicture)
+
   return (
     <>
     

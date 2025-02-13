@@ -8,7 +8,7 @@ const useAssignment = () => {
 
   const [acceptedAssignment, setAcceptedAssignment] = useState(null);
 
-  const [timeSheet, setTimeSheet] = useState(null);
+  const [timesheet, setTimeSheet] = useState(null);
 
   const [loading, setLoading] = useState(false);
 
@@ -202,7 +202,7 @@ const useAssignment = () => {
 
     fetchUnassignedAssignment, // function to fetch the unassigned assignment and update the state( unassignedAssignments)
 
-    timeSheet, // the timesheet as an object
+    timesheet, // the timesheet as an object
 
     fetchTimeSheet, // get the timesheet
 

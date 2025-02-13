@@ -2,7 +2,7 @@
 import React from 'react';
 import Image from 'next/image';
 
-const AssignmentModal = ({ assignment, handleClose, onAcceptance, acceptAssignment, createTimeSheet }) => {
+const AssignmentModal = ({ assignment, handleClose, onAcceptance, acceptAssignment }) => {
 
   if (!assignment) {
     return null;
@@ -24,7 +24,7 @@ const AssignmentModal = ({ assignment, handleClose, onAcceptance, acceptAssignme
   const handleAccept = async () => {
     try {
       await acceptAssignment(assignment.id);
-      await createTimeSheet(assignment.id);
+     
       onAcceptance();
       handleClose();
     } catch (error) {

@@ -13,14 +13,14 @@ import Loading from '@/components/Loading';
 function Page() {
 
   // useAssignment hook to get accepted assignment to card on dashboard
-  const { acceptedAssignment, fetchAcceptedAssignment, timeSheet, fetchTimeSheet  } = useAssignment();
+  const { acceptedAssignment, fetchAcceptedAssignment, timesheet, fetchTimeSheet  } = useAssignment();
   
   // checks if user is authenticated
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   // router from next
   const router = useRouter();
-   console.log(acceptedAssignment)
+   
   
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -65,10 +65,10 @@ function Page() {
         </section>
         {/* Stats, TimeSheetCard and Assignment card on right */}
         <section className="col-span-1 lg:col-span-3">
-          <Stats />
+          <Stats acceptedAssignment={acceptedAssignment} />
           <div className='flex flex-row justify-evenly mt-3'>
             <div className='w-80 h-80'> 
-              <TimeSheetCard timeSheet={timeSheet} />
+              <TimeSheetCard timesheet={timesheet} />
             </div>
             <div className='w-80 h-80'> 
               <AssignedCard acceptedAssignment={acceptedAssignment}  />

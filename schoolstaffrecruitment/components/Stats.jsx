@@ -2,15 +2,16 @@ import React from 'react'
 import { useProfile } from '@/context/ProfileContext';
 import useAssignment from '../customhooks/useAssignment';
 
-const Stats = () => {
+const Stats = ({acceptedAssignment}) => {
     const { profile, loading: profileLoading, error: profileError } = useProfile();
-     const { unassignedAssignments, acceptedAssignment, loading: unassignedAssignmentLoading, error: unassignedAssignmentError } = useAssignment();
+
+     const { unassignedAssignments, loading: unassignedAssignmentLoading, error: unassignedAssignmentError } = useAssignment();
 
   if (profileLoading || unassignedAssignmentLoading) {
     return <div>Loading...</div>;
   }
 
-   
+
 
   if (profileError || unassignedAssignmentError) {
     return <div>Error loading data</div>;
@@ -28,7 +29,7 @@ const Stats = () => {
     <div className="card shadow">
       <div className="card-body">
         <h2 className="card-title">Current Assignment</h2>
-        <p className="text-xl">{acceptedAssignment ? 1 : 0}</p>
+        <p className="text-xl">{acceptedAssignment.schoolDTO?.schoolName}</p>
        
       </div>
     </div>

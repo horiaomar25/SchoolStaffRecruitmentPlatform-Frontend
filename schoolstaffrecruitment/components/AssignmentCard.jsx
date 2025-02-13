@@ -6,7 +6,7 @@ import Loading from './Loading';
 
 const AssignmentCard = () => {
 
-  const { unassignedAssignments, loading, error, acceptAssignment, fetchUnassignedAssignment, createTimeSheet } = useAssignment(); 
+  const { unassignedAssignments, loading, error, acceptAssignment, fetchUnassignedAssignment,  acceptedAssignment } = useAssignment(); 
 
   const[open, setOpen] = useState(false);
 
@@ -33,7 +33,15 @@ const AssignmentCard = () => {
   } 
 
   if (error) {
-    return <div>Error loading assignments</div>
+    return <h2 className='font-bold text-center'>Error loading assignments. Please refresh.</h2>
+  }
+
+  if (acceptedAssignment) {
+    return (
+      <div className="w-full flex justify-center item-center">
+        <h2 className="text-xl text-center font-bold text-red-500">You have already accepted an assignment.</h2>
+      </div>
+    );
   }
 
   
@@ -55,7 +63,7 @@ const AssignmentCard = () => {
           handleClose={handleClose} 
           acceptAssignment={acceptAssignment}
           onAcceptance={handleAssignmentAccepted} 
-          createTimeSheet={createTimeSheet}
+         
           />
          
         )}
