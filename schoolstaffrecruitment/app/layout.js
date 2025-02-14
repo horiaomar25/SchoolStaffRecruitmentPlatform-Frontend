@@ -1,5 +1,6 @@
 import "./globals.css"; 
 import { ProfileProvider } from '../context/ProfileContext';  
+import Footer from '../components/Footer';
 
 export const metadata = {
   title: "SRS",
@@ -12,8 +13,10 @@ export default function RootLayout({ children }) {
       <body>
         
         <ProfileProvider>
-          {children}
+          {children} 
+         
         </ProfileProvider>
+        <Footer/>
       </body>
     </html>
   );

@@ -7,17 +7,21 @@ import useAuth from '@/customhooks/useAuth';
 import { useRouter } from 'next/navigation';
 import SuccessfulLogin from '@/components/SuccessfulLogin';
 
+
 export default function Home() {
   const { token, error, fetchToken, logout } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
     const router = useRouter();
     
   
     const handleLogin = async (e) => {
       e.preventDefault();
-     
-      await fetchToken(username, password); 
+      
+      
+      await fetchToken(username, password);
+      
     };
   
     useEffect(() => {
@@ -26,6 +30,8 @@ export default function Home() {
         router.push('/dashboard');
       }
     }, [token, router]); 
+
+    
   
     return (
       <main className="flex h-screen">
@@ -74,6 +80,7 @@ export default function Home() {
             </button>
   
             {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
+       
             {token && <SuccessfulLogin />}
           </form>
         </div>

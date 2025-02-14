@@ -7,12 +7,14 @@ const TimeSheet = ({ handleClose, timesheet }) => {
  
 
   return (
+
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-800 bg-opacity-50">
       {/* Overlay */}
       <div className="card text-primary-content w-full md:w-8/12 lg:w-9/12 xl:w-7/12 border bg-white border-black z-10 relative">
         <button onClick={handleClose} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</button>
 
         <div className="card-body p-6 max-h-[80vh] overflow-y-auto">
+
           <div className="grid grid-cols-1 ">
             <h2 className="card-title">TimeSheet</h2>
 
@@ -20,7 +22,7 @@ const TimeSheet = ({ handleClose, timesheet }) => {
               <h2 className="mr-8 mb-4">Dates</h2>
               <div className="flex flex-col space-y-2">
                 {timeSheetDates.map((dateObj, index) => {
-                  const date = new Date(dateObj.date);  // Convert date string to Date object
+                  const date = new Date(dateObj.date); 
                   if (isNaN(date)) {
                     return <div key={index}>Invalid Date</div>;
                   }
@@ -33,7 +35,7 @@ const TimeSheet = ({ handleClose, timesheet }) => {
                 })}
               </div>
             </section>
-
+            <button disabled className="btn btn-primary mt-4">Submit</button>
           </div>
         </div>
       </div>

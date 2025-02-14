@@ -24,6 +24,7 @@ const Success = () => {
           d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
       </svg>
       <h2 className="font-bold text-2xl mt-4">You have accepted an assignment!</h2>
+      <p className=" text-lg mt-4 text-center">Continue to the dashboard to view your accepted assignment and created timesheet</p>
     </div>
   );
 };

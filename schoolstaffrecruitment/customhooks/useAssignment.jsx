@@ -113,9 +113,9 @@ const useAssignment = () => {
         },
       });
 
-      if (!response.ok) {
-        throw new Error("Failed to create timesheet");
-      }
+      // if (!response.ok) {
+      //   throw new Error("Failed to create timesheet");
+      // }
 
       const data = await response.json();
       setTimeSheet(data);
@@ -145,6 +145,7 @@ const useAssignment = () => {
       });
 
       if (!response.ok) {
+        
         throw new Error("Failed to fetch timesheet");
       }
 

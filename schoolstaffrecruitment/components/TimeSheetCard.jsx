@@ -7,8 +7,6 @@ import EmptyTimeSheetCard from './EmptyTimeSheetCard';
 
 const TimeSheetCard = ({timesheet, loading, error}) => {
  
-  
-
   const [open, setOpen] = useState(false);
   
   const handleModal = () => {

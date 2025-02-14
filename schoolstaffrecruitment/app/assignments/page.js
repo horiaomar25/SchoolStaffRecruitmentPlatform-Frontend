@@ -4,10 +4,11 @@ import Navigation from '@/components/Navigation';
 import AssignmentCard from '@/components/AssignmentCard';
 import useAssignment from '@/customhooks/useAssignment';
 import Success from '@/components/Success';
+import Loading from '@/components/Loading';
 
 const Page = () => {
   
-  const{ acceptedAssignment, fetchAcceptedAssignment } = useAssignment();
+  const{ acceptedAssignment, fetchAcceptedAssignment, loading } = useAssignment();
 
   //  a flag to check if assignment has been accepted
   const [isAssignmentAccepted, setIsAssignmentAccepted] = useState(false);
@@ -27,6 +28,10 @@ const Page = () => {
   // Function to handle the user click on the accept button (manual state update)
   const handleAcceptance = () =>{
     setIsAssignmentAccepted(true);
+  }
+
+  if(loading) {
+<Loading />
   }
 
 
