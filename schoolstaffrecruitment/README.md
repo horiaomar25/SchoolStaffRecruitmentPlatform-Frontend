@@ -24,3 +24,10 @@ Make sure to change directory when doing ```npm run dev```
 
 ![alt text](image-1.png)
 
+Once you click on 'http://localhost:3000/' you should see the login page.
+
+Here is where you can login with the username and password you registered in postman
+
+![alt text](image-2.png)
+
+
