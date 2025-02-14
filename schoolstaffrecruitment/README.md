@@ -2,6 +2,8 @@
 
 This project is running on Next.js.
 
+https://nextjs.org/docs/app/getting-started/installation
+
 ## Installation
 
 To run this project locally, follow these steps:
@@ -16,4 +18,9 @@ Install dependencies:
 
 Run the frontend of the project:
 
-```npm run dev```
+Make sure to change directory when doing ```npm run dev```
+
+![alt text](image.png)
+
+![alt text](image-1.png)
+
