@@ -24,7 +24,7 @@ const useAssignment = () => {
       }
 
       setLoading(true);
-      const response = await fetch("http://localhost:8080/api/v1/assignments/unassigned", {
+      const response = await fetch("https://schoolstaffrecruitmentplatform.onrender.com/api/v1/assignments/unassigned", {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -65,7 +65,7 @@ const useAssignment = () => {
       }
 
       setLoading(true);
-      const response = await fetch(`http://localhost:8080/api/v1/assignments/${assignmentId}/accept`, {
+      const response = await fetch(`https://schoolstaffrecruitmentplatform.onrender.com/api/v1/assignments/${assignmentId}/accept`, {
         method: 'PUT',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -105,7 +105,7 @@ const useAssignment = () => {
       }
 
       setLoading(true);
-      const response = await fetch(`http://localhost:8080/api/v1/assignments/${assignmentId}/timesheet`, {
+      const response = await fetch(`https://schoolstaffrecruitmentplatform.onrender.com/api/v1/assignments/${assignmentId}/timesheet`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -136,7 +136,7 @@ const useAssignment = () => {
       }
 
       setLoading(true);
-      const response = await fetch(`http://localhost:8080/api/v1/assignments/${assignmentId}/gettimesheet`, {
+      const response = await fetch(`https://schoolstaffrecruitmentplatform.onrender.com/api/v1/assignments/${assignmentId}/gettimesheet`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -173,7 +173,7 @@ const useAssignment = () => {
 
       setLoading(true); // set loading to true while waiting for api response
 
-      const response = await fetch(`http://localhost:8080/api/v1/assignments/accepted`, {
+      const response = await fetch(`https://schoolstaffrecruitmentplatform.onrender.com/api/v1/assignments/accepted`, {
         method: 'GET',
         headers: {
           Authorization: `Bearer ${token}`,

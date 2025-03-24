@@ -7,19 +7,15 @@ const useAuth = () => {
 
   // Should deal with page reload
   useEffect(() => {
-    const storedToken = localStorage.getItem('token');
-    if (storedToken) {
-      validateToken(storedToken);
-    }
+      validateToken();
   }, []);
 
 
   const validateToken = async (token) => {
     try{
-      const response = await fetch('http://localhost:8080/api/v1/auth/validate', {
+      const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/auth/validate', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
       });
@@ -27,7 +23,7 @@ const useAuth = () => {
       const data = await response.json();
 
       if(response.ok){
-        setToken(token);
+        setToken("Token is valid");
       } else {
         logout();
 
@@ -40,63 +36,50 @@ const useAuth = () => {
 
  
 
-  const fetchToken = async (username, password) => {
+  const login = async (username, password) => {
     try {
-      const response = await fetch('http://localhost:8080/api/v1/auth/login', {
+      const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/auth/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`,
+          
         },
         body: JSON.stringify({ username, password }),
       });
 
-      const data = await response.json();
-
       if (response.ok) {
-        setToken(data.token); 
-        localStorage.setItem('token', data.token); 
+        validateToken();
       } else {
-        setError(data.message); 
+        setError("Login failed"); 
       }
+
     } catch (error) {
       setError(error.message); 
     }
   };
 
-  const register = async (username, password) => {
+  const logout = async  () => {
     try {
-      const response = await fetch('http://localhost:8080/api/v1/auth/register', {
+      const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/auth/logout', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          username, 
-          password 
-          
-        }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        
-        fetchToken(username, password); 
-      } else {
-        setError(data.message);
-      }
-    } catch (error) {
-      setError(error.message);
+          'Content-Type': 'application/json'
+        }
+      })
+      setToken(null)
+    } catch (error){
+      setError(error.message)
     }
-  };
+  }
 
-  const logout = () => {
-    setToken(null);
-    localStorage.removeItem('token');
-  };
+  
 
-  return { token, error, fetchToken, logout, register };
+  // const logout = () => {
+  //   setToken(null);
+  //   localStorage.removeItem('token');
+  // };
+
+  return { token, error, login, logout, register };
 };
 
 export default useAuth;
