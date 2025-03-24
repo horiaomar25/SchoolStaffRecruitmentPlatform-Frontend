@@ -9,7 +9,7 @@ import SuccessfulLogin from '@/components/SuccessfulLogin';
 
 
 export default function Home() {
-  const { token, error, fetchToken, logout } = useAuth();
+  const { token, error, login, logout  } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
@@ -20,7 +20,7 @@ export default function Home() {
       e.preventDefault();
       
       
-      await fetchToken(username, password);
+      await login(username, password);
       
     };
   
