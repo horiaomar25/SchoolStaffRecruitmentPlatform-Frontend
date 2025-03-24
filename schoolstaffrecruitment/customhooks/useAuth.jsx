@@ -79,7 +79,7 @@ const useAuth = () => {
   //   localStorage.removeItem('token');
   // };
 
-  return { token, error, login, logout, register };
+  return { token, error, login, logout };
 };
 
 export default useAuth;
