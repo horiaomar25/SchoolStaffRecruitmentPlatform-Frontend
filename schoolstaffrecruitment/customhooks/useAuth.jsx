@@ -13,6 +13,10 @@ const useAuth = () => {
         try {
             const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/auth/validate', {
                 method: 'POST',
+                headers: {
+                     'Content-Type': 'application/json'
+                },
+               
                 
             });
 
@@ -32,6 +36,9 @@ const useAuth = () => {
         try {
             const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/auth/login', {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+               },
                 
                 body: JSON.stringify({ username, password }),
             });
@@ -53,6 +60,9 @@ const useAuth = () => {
         try {
             await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/auth/logout', {
                 method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+               },
                 
             });
             setToken(null);
