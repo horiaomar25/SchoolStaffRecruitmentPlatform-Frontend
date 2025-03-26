@@ -14,16 +14,15 @@ import Loading from "@/components/Loading";
 
 function Page() {
   const { profile, loading, error } = useProfile();
-  const [showProfileDescription, setShowProfileDescription] = useState(false);
-  const router = useRouter();
+    const [showProfileDescription, setShowProfileDescription] = useState(false);
+    const router = useRouter();
 
-  useEffect(() => {
-      const token = Cookies.get('jwtToken'); // Use Cookies.get()
-
-      if (!token) {
-          router.push('/');
-      }
-  }, [router]);
+    useEffect(() => {
+        const token = Cookies.get('jwtToken');
+        if (!token) {
+            router.push('/');
+        }
+    }, [router]);
 
   if (loading) {
       return <Loading />;
