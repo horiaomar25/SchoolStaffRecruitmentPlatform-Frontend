@@ -9,27 +9,34 @@ import SuccessfulLogin from '@/components/SuccessfulLogin';
 
 
 export default function Home() {
-  const { token, error, login, logout  } = useAuth();
+  const { error, login, validateToken } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [isAuthenticated, setIsAuthenticated] = useState(false); // Add isAuthenticated state
 
     const router = useRouter();
-    
-  
+
     const handleLogin = async (e) => {
-      e.preventDefault();
-      
-      
-      await login(username, password);
-      
+        e.preventDefault();
+
+        const success = await login(username, password);
+
+        if (success) {
+            router.push('/dashboard');
+        }
     };
-  
+
     useEffect(() => {
-      if (token) {
-       
-        router.push('/dashboard');
-      }
-    }, [token, router]); 
+        const checkAuth = async () => {
+            const isValid = await validateToken();
+            setIsAuthenticated(isValid);
+            if (isValid) {
+                router.push('/dashboard');
+            }
+        };
+
+        checkAuth();
+    }, [validateToken, router]);
 
     
   
