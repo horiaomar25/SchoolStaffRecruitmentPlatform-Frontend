@@ -88,7 +88,7 @@ export default function Home() {
   
             {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
        
-            {token && <SuccessfulLogin />}
+            {isAuthenticated && <SuccessfulLogin />}
           </form>
         </div>
       </main>
