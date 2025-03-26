@@ -12,15 +12,12 @@ export default function Home() {
   const { error, login, validateToken } = useAuth();
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-    const [isAuthenticated, setIsAuthenticated] = useState(false); // Add isAuthenticated state
-
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const router = useRouter();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-
         const success = await login(username, password);
-
         if (success) {
             router.push('/dashboard');
         }
@@ -34,7 +31,6 @@ export default function Home() {
                 router.push('/dashboard');
             }
         };
-
         checkAuth();
     }, [validateToken, router]);
 
