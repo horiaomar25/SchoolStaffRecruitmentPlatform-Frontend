@@ -11,18 +11,25 @@ const useAuth = () => {
 
     const validateToken = async () => {
         try {
+            // Retrieve the token from cookies
+            const jwtToken = getCookie('jwtToken');
+
+            if (!jwtToken) {
+                setToken(null);
+                return;
+            }
+
             const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/auth/validate', {
                 method: 'POST',
                 headers: {
-                     'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${jwtToken}` // Include the token in the Authorization header
                 },
-               credentials: 'include'
-                
+                credentials: 'include'
             });
 
             if (response.ok) {
-                //If the token is valid, the backend returns {message: "Token is valid"}
-                setToken("Token is valid");
+                setToken('Token is valid');
             } else {
                 setToken(null);
             }
@@ -38,13 +45,12 @@ const useAuth = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-               },
-                
+                },
                 body: JSON.stringify({ username, password }),
             });
 
             if (response.ok) {
-                validateToken(); //Validate the token after a successful login.
+                validateToken(); // Validate the token after a successful login.
             } else {
                 const errorData = await response.json();
                 setError(errorData.message || "Login failed"); // Use backend error message if available.
@@ -62,14 +68,20 @@ const useAuth = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
-               },
-                
+                },
             });
             setToken(null);
         } catch (error) {
             setError(error.message);
             setToken(null);
         }
+    };
+
+    // Helper function to get cookie value
+    const getCookie = (name) => {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${name}=`);
+        if (parts.length === 2) return parts.pop().split(';').shift();
     };
 
     return { token, error, login, logout };
