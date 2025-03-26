@@ -6,14 +6,15 @@ const useAuth = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        validateToken();
+        const storedToken = getCookie('jwtToken');
+        if (storedToken) {
+            setToken(storedToken);
+            validateToken(storedToken); // Validate the token if it exists on mount
+        }
     }, []);
 
-    const validateToken = async () => {
+    const validateToken = async (jwtToken) => {
         try {
-            // Retrieve the token from cookies
-            const jwtToken = getCookie('jwtToken');
-
             if (!jwtToken) {
                 setToken(null);
                 return;
@@ -23,13 +24,13 @@ const useAuth = () => {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${jwtToken}` // Include the token in the Authorization header
+                    'Authorization': `Bearer ${jwtToken}`
                 },
                 credentials: 'include'
             });
 
             if (response.ok) {
-                setToken('Token is valid');
+                setToken(jwtToken); // Update the state with the token
             } else {
                 setToken(null);
             }
@@ -50,10 +51,12 @@ const useAuth = () => {
             });
 
             if (response.ok) {
-                validateToken(); // Validate the token after a successful login.
+                const jwtToken = getCookie('jwtToken');
+                setToken(jwtToken);
+                validateToken(jwtToken); // Validate the token after a successful login.
             } else {
                 const errorData = await response.json();
-                setError(errorData.message || "Login failed"); // Use backend error message if available.
+                setError(errorData.message || "Login failed");
                 setToken(null);
             }
         } catch (error) {
@@ -77,7 +80,6 @@ const useAuth = () => {
         }
     };
 
-    // Helper function to get cookie value
     const getCookie = (name) => {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
