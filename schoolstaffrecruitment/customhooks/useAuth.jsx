@@ -68,7 +68,11 @@ const useAuth = () => {
                 const jwtToken = getCookie('jwtToken');
                 console.log("login: Token Retrieved:", jwtToken);
                 setToken(jwtToken);
-                validateToken(jwtToken); // Correct placement of validateToken call
+    
+                // Add a short delay so browser can proccess set Cookie
+                setTimeout(() => {
+                    validateToken(jwtToken);
+                }, 100);
             } else {
                 const errorData = await response.json();
                 console.error("login: Login Failed:", errorData);
