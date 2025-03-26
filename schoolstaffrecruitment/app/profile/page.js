@@ -12,28 +12,24 @@ import QualificationCard from "@/components/QualificationCard";
 import Loading from "@/components/Loading";
 
 function Page() {
-  // Use profile data from context
-  const { profile, loading, error } = useProfile(); // Fetch profile, loading, and error states
+  const { profile, loading, error } = useProfile();
   const [showProfileDescription, setShowProfileDescription] = useState(false);
-  const { token } = useAuth(); // Get auth token from the useAuth hook
   const router = useRouter();
 
-  // Check authentication and redirect if no token is found
   useEffect(() => {
-    const savedToken = localStorage.getItem('token');
-    if (!savedToken) {
-      router.push('/'); 
-    }
-  }, [token, router]);
+      const token = Cookies.get('jwtToken'); // Use Cookies.get()
 
-  // Render loading screen while the profile is being fetched
+      if (!token) {
+          router.push('/');
+      }
+  }, [router]);
+
   if (loading) {
-    return <Loading/>;
+      return <Loading />;
   }
 
-  // Render error message if there's an error fetching profile
   if (error) {
-    return <div>Error loading profile: {error}</div>;
+      return <div>Error loading profile: {error}</div>;
   }
 
   return (

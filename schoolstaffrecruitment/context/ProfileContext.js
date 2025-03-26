@@ -1,35 +1,35 @@
-"use client"
+"use client";
 
-import {createContext, useContext, useState, useEffect} from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
+import Cookies from 'js-cookie'; // Import js-cookie
 
 const ProfileContext = createContext();
 
-export const ProfileProvider = ({children}) => {
-    const[profile, setProfile] = useState(null);
-    const[loading, setLoading] = useState(true);
-    const[error, setError] = useState(null);
+export const ProfileProvider = ({ children }) => {
+    const [profile, setProfile] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchProfile = async () => {
-            const token = localStorage.getItem('token');
+            const token = Cookies.get('jwtToken'); // Use Cookies.get()
 
-            if(!token){
+            if (!token) {
                 setError('Not Authenticated');
                 setLoading(false);
                 return;
             }
 
             try {
-                const response = await fetch('http://localhost:8080/api/v1/profile/personal', {
+                const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/profile/personal', {
                     method: 'GET',
                     headers: {
                         Authorization: `Bearer ${token}`,
                         "Content-Type": "application/json"
-                        
                     },
                 });
 
-                if(!response.ok){
+                if (!response.ok) {
                     throw new Error('Not Authenticated');
                 }
 
@@ -40,25 +40,22 @@ export const ProfileProvider = ({children}) => {
             } finally {
                 setLoading(false);
             }
-
         };
 
         fetchProfile();
-
     }, []);
 
     const updateProfile = async (updatedData) => {
-        const token = localStorage.getItem('token');
+        const token = Cookies.get('jwtToken'); // Use Cookies.get()
 
-        if(!token){
-           
+        if (!token) {
             setError('Not Authenticated');
             return;
         }
 
         try {
-            const response = await fetch('http://localhost:8080/api/v1/profile/update', {
-            method: 'PATCH',
+            const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/profile/update', {
+                method: 'PATCH',
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json"
@@ -66,7 +63,7 @@ export const ProfileProvider = ({children}) => {
                 body: JSON.stringify(updatedData)
             });
 
-            if(!response.ok){
+            if (!response.ok) {
                 throw new Error('Failed to update profile');
             }
 
@@ -77,20 +74,13 @@ export const ProfileProvider = ({children}) => {
         } finally {
             setLoading(false);
         }
-
-
     };
 
-  
-
-    
     return (
-        <ProfileContext.Provider value={{profile, loading, error, updateProfile}}>
+        <ProfileContext.Provider value={{ profile, loading, error, updateProfile }}>
             {children}
         </ProfileContext.Provider>
-    )
-
-
+    );
 };
 
 export const useProfile = () => useContext(ProfileContext);
