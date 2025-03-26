@@ -19,6 +19,7 @@ function Page() {
 
     useEffect(() => {
         const token = Cookies.get('jwtToken');
+        console.log("Token from cookies: ", token);
         if (!token) {
             router.push('/');
         }
