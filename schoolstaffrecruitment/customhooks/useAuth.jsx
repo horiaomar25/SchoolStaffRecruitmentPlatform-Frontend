@@ -23,9 +23,10 @@ const useAuth = () => {
                 setToken(null);
                 return;
             }
-
-            console.log("validateToken: Validating Token:", jwtToken); // Log the token
-
+    
+            console.log("validateToken: Validating Token:", jwtToken);
+            console.log("validateToken: About to fetch..."); // Log before fetch
+    
             const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/auth/validate', {
                 method: 'POST',
                 headers: {
@@ -34,12 +35,12 @@ const useAuth = () => {
                 },
                 credentials: 'include'
             });
-
+    
             console.log("validateToken: Response:", response); // Log the response
-
+    
             if (response.ok) {
                 console.log("validateToken: Token Validated Successfully.");
-                setToken(jwtToken); // Update the state with the token
+                setToken(jwtToken);
             } else {
                 console.log("validateToken: Token Validation Failed.");
                 setToken(null);
@@ -60,14 +61,14 @@ const useAuth = () => {
                 },
                 body: JSON.stringify({ username, password }),
             });
-
-            console.log("login: Response:", response); // Log the response
-
+    
+            console.log("login: Response:", response);
+    
             if (response.ok) {
                 const jwtToken = getCookie('jwtToken');
-                console.log("login: Token Retrieved:", jwtToken); // Log the retrieved token
+                console.log("login: Token Retrieved:", jwtToken);
                 setToken(jwtToken);
-                validateToken(jwtToken); // Validate the token after a successful login.
+                validateToken(jwtToken); // Correct placement of validateToken call
             } else {
                 const errorData = await response.json();
                 console.error("login: Login Failed:", errorData);
@@ -101,7 +102,13 @@ const useAuth = () => {
     const getCookie = (name) => {
         const value = `; ${document.cookie}`;
         const parts = value.split(`; ${name}=`);
-        if (parts.length === 2) return parts.pop().split(';').shift();
+        if (parts.length === 2) {
+            const cookieValue = parts.pop().split(';').shift();
+            console.log("getCookie:", name, cookieValue); // Log the cookie value
+            return cookieValue;
+        }
+        console.log("getCookie:", name, "undefined"); // Log if no cookie found
+        return undefined;
     };
 
     return { token, error, login, logout };
