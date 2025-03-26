@@ -1,12 +1,34 @@
-"use client";
 
-import { useState, useCallback } from 'react';
-import Cookies from 'js-cookie';
-import { useRouter } from 'next/navigation';
+import { useState } from 'react';
 
 const useAuth = () => {
     const [error, setError] = useState(null);
-    const router = useRouter();
+
+    const validateToken = async () => {
+        try {
+            const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/auth/validate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include', // Ensure cookies are sent
+            });
+
+            console.log("validateToken: Response:", response);
+
+            if (!response.ok) {
+                console.log("validateToken: Token Validation Failed.");
+                setError("Token validation failed");
+                return false; // Indicate validation failure
+            }
+            console.log("validateToken: Token Validated Successfully.");
+            return true; // Indicate validation success
+        } catch (error) {
+            console.error("validateToken: Error:", error);
+            setError(error.message);
+            return false; // Indicate validation failure
+        }
+    };
 
     const login = async (username, password) => {
         try {
@@ -18,47 +40,42 @@ const useAuth = () => {
                 body: JSON.stringify({ username, password }),
             });
 
-            if (!response.ok) {
+            console.log("login: Response:", response);
+
+            if (response.ok) {
+                console.log("login: Login Successful");
+                return true; // Indicate login success
+            } else {
                 const errorData = await response.json();
-                throw new Error(errorData.message || 'Login failed');
+                console.error("login: Login Failed:", errorData);
+                setError(errorData.message || "Login failed");
+                return false; // Indicate login failure
             }
-
-            const data = await response.json();
-            Cookies.set('jwtToken', data.token, { expires: 7 }); // Set cookie
-
-            return true; // Indicate successful login
-        } catch (err) {
-            setError(err.message);
-            return false;
+        } catch (error) {
+            console.error("login: Error:", error);
+            setError(error.message);
+            return false; // Indicate login failure
         }
     };
 
-    const validateToken = useCallback(async () => {
-        const token = Cookies.get('jwtToken');
-
-        if (!token) {
-            return false;
-        }
-
+    const logout = async () => {
         try {
-            const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/auth/validate', {
-                method: 'GET',
+            await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/auth/logout', {
+                method: 'POST',
                 headers: {
-                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json',
                 },
             });
-
-            if (!response.ok) {
-                return false;
-            }
-
-            return true;
-        } catch (err) {
-            return false;
+            console.log("logout: Logged out successfully.");
+            return true; // Indicate logout success
+        } catch (error) {
+            console.error("logout: Error:", error);
+            setError(error.message);
+            return false; // Indicate logout failure
         }
-    }, []);
+    };
 
-    return { error, login, validateToken };
+    return { error, login, logout, validateToken }; // Remove token state
 };
 
 export default useAuth;
