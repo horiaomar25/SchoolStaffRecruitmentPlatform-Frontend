@@ -41,16 +41,7 @@ function Page() {
         );
     }
 
-    if (!acceptedAssignment) {
-        return (
-            <>
-                <Navigation />
-                <main className="p-10">
-                    <div>No accepted assignment found.</div>
-                </main>
-            </>
-        );
-    }
+   
 
   return (
     <>
