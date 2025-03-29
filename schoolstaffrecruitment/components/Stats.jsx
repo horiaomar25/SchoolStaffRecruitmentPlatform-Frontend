@@ -14,7 +14,7 @@ const Stats = ({acceptedAssignment}) => {
 
 
   if (profileError || unassignedAssignmentError) {
-    return <h2 className="font-bold  text-center">Error loading data. Please refresh</h2>;
+    return <h2 className="font-bold  text-center">Error loading data. Please refresh your browser</h2>;
   }
   return (
     <><div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">

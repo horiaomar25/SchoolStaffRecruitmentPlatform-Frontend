@@ -13,7 +13,8 @@ const useAssignment = () => {
 
     const fetchUnassignedAssignment = async () => {
         try {
-            const token = Cookies.get('jwtToken'); // Use Cookies.get()
+            const token = Cookies.get('jwtToken'); 
+            console.log("Token:", token); 
 
             if (!token) {
                 throw new Error("User not authenticated");
@@ -27,6 +28,8 @@ const useAssignment = () => {
                     "Content-Type": "application/json",
                 },
             });
+
+            console.log("Headers:", headers); 
 
             if (!response.ok) {
                 throw new Error("Failed to fetch unassigned assignment");
