@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 import useAuth from '../../customhooks/useAuth'; // Custom hook for handling auth
 import QualificationCard from "@/components/QualificationCard";
 import Loading from "@/components/Loading";
+import Cookies from 'js-cookie';
 
 function Page() {
   const { profile, loading, error } = useProfile();

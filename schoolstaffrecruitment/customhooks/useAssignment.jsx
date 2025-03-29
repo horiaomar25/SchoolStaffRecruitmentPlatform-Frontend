@@ -29,7 +29,7 @@ const useAssignment = () => {
                 },
             });
 
-            console.log("Headers:", headers); 
+           
 
             if (!response.ok) {
                 throw new Error("Failed to fetch unassigned assignment");
