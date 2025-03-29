@@ -30,16 +30,16 @@ function Page() {
         return <Loading />;
     }
 
-    if (error) {
-        return (
-            <>
-                <Navigation />
-                <main className="p-10">
-                    <div>Error: {error}</div>
-                </main>
-            </>
-        );
-    }
+    // if (error) {
+    //     return (
+    //         <>
+    //             <Navigation />
+    //             <main className="p-10">
+    //                 <div>Error: {error}</div>
+    //             </main>
+    //         </>
+    //     );
+    // }
 
    
 
