@@ -43,7 +43,7 @@ const useAuth = () => {
 
         try {
             const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/auth/validate', {
-                method: 'GET',
+                method: 'POST',
                 headers: {
                     'Authorization': `Bearer ${token}`,
                 },

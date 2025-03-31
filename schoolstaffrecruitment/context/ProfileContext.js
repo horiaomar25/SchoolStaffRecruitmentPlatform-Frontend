@@ -12,7 +12,7 @@ export const ProfileProvider = ({ children }) => {
 
     useEffect(() => {
         const fetchProfile = async () => {
-            const token = Cookies.get('jwtToken'); // Use Cookies.get()
+            const token = Cookies.get('jwtToken');  // Use Cookies.get()
 
             if (!token) {
                 setError('Not Authenticated');
@@ -24,7 +24,7 @@ export const ProfileProvider = ({ children }) => {
                 const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/profile/personal', {
                     method: 'GET',
                     headers: {
-                        Authorization: `Bearer ${token}`,
+                        
                         "Content-Type": "application/json"
                     },
                 });
