@@ -23,6 +23,7 @@ export const ProfileProvider = ({ children }) => {
             try {
                 const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/profile/personal', {
                     method: 'GET',
+                    credentials: 'include',
                     headers: {
                         Authorization: `Bearer ${token}`,
                         
@@ -57,6 +58,7 @@ export const ProfileProvider = ({ children }) => {
         try {
             const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/profile/update', {
                 method: 'PATCH',
+                credentials: 'include',
                 headers: {
                     Authorization: `Bearer ${token}`,
                     "Content-Type": "application/json"
