@@ -24,10 +24,8 @@ export const ProfileProvider = ({ children }) => {
                 const response = await fetch('https://schoolstaffrecruitmentplatform.onrender.com/api/v1/profile/personal', {
                     method: 'GET',
                     credentials: 'include',
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                        
-                        "Content-Type": "application/json"
+                    headers: { 
+                        'Content-Type': 'application/json'
                     },
                 });
 
@@ -60,7 +58,7 @@ export const ProfileProvider = ({ children }) => {
                 method: 'PATCH',
                 credentials: 'include',
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(updatedData)
