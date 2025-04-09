@@ -24,8 +24,8 @@ const useAssignment = () => {
             const response = await fetch("https://schoolstaffrecruitmentplatform.onrender.com/api/v1/assignments/unassigned", {
                 method: 'GET',
                 headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
+                    
+                   'Content-Type': 'application/json'
                 },
             });
 
@@ -62,8 +62,8 @@ const useAssignment = () => {
             const response = await fetch(`https://schoolstaffrecruitmentplatform.onrender.com/api/v1/assignments/${assignmentId}/accept`, {
                 method: 'PUT',
                 headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
+                   
+                   'Content-Type': 'application/json'
                 },
             });
 
@@ -95,8 +95,8 @@ const useAssignment = () => {
             const response = await fetch(`https://schoolstaffrecruitmentplatform.onrender.com/api/v1/assignments/${assignmentId}/timesheet`, {
                 method: 'POST',
                 headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
+                    
+                    'Content-Type': 'application/json'
                 },
             });
 
@@ -122,8 +122,8 @@ const useAssignment = () => {
             const response = await fetch(`https://schoolstaffrecruitmentplatform.onrender.com/api/v1/assignments/${assignmentId}/gettimesheet`, {
                 method: 'GET',
                 headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
+                    
+                    'Content-Type': 'application/json'
                 },
             });
 
@@ -154,8 +154,8 @@ const useAssignment = () => {
             const response = await fetch(`https://schoolstaffrecruitmentplatform.onrender.com/api/v1/assignments/accepted`, {
                 method: 'GET',
                 headers: {
-                    Authorization: `Bearer ${token}`,
-                    "Content-Type": "application/json",
+                    
+                   'Content-Type': 'application/json'
                 },
             });
 
