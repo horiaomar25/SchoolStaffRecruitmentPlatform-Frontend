@@ -14,7 +14,7 @@ const useAssignment = () => {
     const fetchUnassignedAssignment = async () => {
         try {
             const token = Cookies.get('jwtToken'); 
-            console.log("Token:", token); 
+             
 
             if (!token) {
                 throw new Error("User not authenticated");
@@ -25,7 +25,8 @@ const useAssignment = () => {
                 method: 'GET',
                 headers: {
                     
-                   'Content-Type': 'application/json'
+                   'Content-Type': 'application/json',
+                   'Authorization': `Bearer ${token}`,
                 },
             });
 
@@ -63,7 +64,8 @@ const useAssignment = () => {
                 method: 'PUT',
                 headers: {
                    
-                   'Content-Type': 'application/json'
+                   'Content-Type': 'application/json',
+                   'Authorization': `Bearer ${token}`,
                 },
             });
 
@@ -96,7 +98,8 @@ const useAssignment = () => {
                 method: 'POST',
                 headers: {
                     
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
                 },
             });
 
@@ -155,7 +158,8 @@ const useAssignment = () => {
                 method: 'GET',
                 headers: {
                     
-                   'Content-Type': 'application/json'
+                   'Content-Type': 'application/json',
+                   'Authorization': `Bearer ${token}`,
                 },
             });
 

@@ -25,7 +25,8 @@ export const ProfileProvider = ({ children }) => {
                     method: 'GET',
                     credentials: 'include',
                     headers: { 
-                        'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
                     },
                 });
 
@@ -59,7 +60,8 @@ export const ProfileProvider = ({ children }) => {
                 credentials: 'include',
                 headers: {
                     
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'Authorization': `Bearer ${token}`,
                 },
                 body: JSON.stringify(updatedData)
             });
