@@ -56,7 +56,8 @@ export default function Home() {
             height={100} 
           />
           
-          <form onSubmit={handleLogin} className="flex flex-col items-center w-full max-w-xs">
+          <form onSubmit={handleLogin} className="flex flex-col items-center w-full max-w-xs" aria-label='Login Form'>
+            <label htmlFor='username' className="text-lg font-semibold mb-2">Username</label>
             <input 
               type="text" 
               placeholder="Enter your username" 
@@ -65,7 +66,7 @@ export default function Home() {
               className="mb-4 p-3 w-full border border-gray-300 rounded"
               required
             />
-            
+            <label htmlFor='username' className="text-lg font-semibold mb-2">Password</label>
             <input 
               type="password" 
               placeholder="Enter your password" 
