@@ -61,6 +61,7 @@ export default function Home() {
             <input 
               type="text" 
               placeholder="Enter your username" 
+              id="username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
               className="mb-4 p-3 w-full border border-gray-300 rounded"
@@ -70,6 +71,7 @@ export default function Home() {
             <input 
               type="password" 
               placeholder="Enter your password" 
+              id="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               className="mb-4 p-3 w-full border border-gray-300 rounded"

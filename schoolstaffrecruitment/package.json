@@ -23,6 +23,8 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.19",
     "daisyui": "^4.12.23",
     "eslint": "^9",
     "eslint-config-next": "15.1.3",
