@@ -7,7 +7,7 @@ import Image from 'next/image';
 import Stats from '@/components/Stats';
 import AssignedCard from '@/components/AssignedCard';
 import useAssignment from '@/customhooks/useAssignment';
-import Loading from '@/components/Loading';
+import LoadingSigningIn from '@/components/LoadingSigningIn';
 
 
 function Page() {
@@ -27,21 +27,9 @@ function Page() {
 
     // Handle loading and error states
     if (loading) {
-        return <Loading />;
+        return <LoadingSigningIn />;
     }
 
-    // if (error) {
-    //     return (
-    //         <>
-    //             <Navigation />
-    //             <main className="p-10">
-    //                 <div>Error: {error}</div>
-    //             </main>
-    //         </>
-    //     );
-    // }
-
-   
 
   return (
     <>
