@@ -99,7 +99,7 @@ const Navigation = () => {
       
   <div className="navbar-end">
       <button className="btn" onClick={()=>document.getElementById('my_modal_1').showModal()}>Logout</button>
-<dialog id="my_modal_1" className="modal">
+<dialog data-testid="logout-modal" id="my_modal_1" className="modal">
   <div className="modal-box bg-white">
     <h3 className="font-bold text-lg">Logout</h3>
     <p className="py-4">Would you like to logout?</p>

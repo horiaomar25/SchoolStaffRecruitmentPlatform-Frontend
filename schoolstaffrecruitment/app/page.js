@@ -81,7 +81,7 @@ export default function Home() {
               className="mb-4 p-3 w-full border border-gray-300 rounded"
               required
             />
-            <label htmlFor='username' className="text-lg font-semibold mb-2">Password</label>
+            <label htmlFor='password' className="text-lg font-semibold mb-2">Password</label>
             <input 
               type="password" 
               placeholder="Enter your password" 
@@ -94,6 +94,7 @@ export default function Home() {
             
             <button 
               type="submit"
+              data-testid="login-button"
               className="btn btn-wide bg-blue-500 hover:bg-blue-700 text-white"
             >
               Login

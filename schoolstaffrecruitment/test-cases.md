@@ -22,6 +22,7 @@ EXPECTED: User sees loading page and redirected to the dashboard.
 
 - **Steps:**
   1. Navigate to '[https:](http://localhost:3000/dashboard)'
-  2.  Click logout button
-  3.  Click yes on logout modal 
+  2. Click logout button.
+  3. Modal will appear to confirm logout.
+  3. Click yes on logout modal. 
 EXPECTED: User redirected to the login page.
