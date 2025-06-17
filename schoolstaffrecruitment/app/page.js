@@ -6,20 +6,34 @@ import logo from '../public/logo.png';
 import useAuth from '@/customhooks/useAuth';
 import { useRouter } from 'next/navigation';
 import SuccessfulLogin from '@/components/SuccessfulLogin';
+import UnsuccessfulLogin from '@/components/UnsuccessfulLogin';
 
 
 export default function Home() {
-  const { error, login, validateToken } = useAuth();
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const router = useRouter();
+    const { error, login, validateToken } = useAuth(); // Deconstructing custom hook
 
+    const [username, setUsername] = useState(''); // state to hold username
+
+    const [password, setPassword] = useState(''); // state to hold password
+
+    const [loginFailed, setLoginFailed] = useState(false);
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false); // track authenication
+
+    const router = useRouter(); // Next.js navigation
+    
+    // Login handler/ Form submission event
     const handleLogin = async (e) => {
-        e.preventDefault();
-        const success = await login(username, password);
+        e.preventDefault(); // Prevents full page reloading when form is submitted.
+
+        const success = await login(username, password); // await pauses execution when login is taking place.
+
+        setLoginFailed(!success);
+
         if (success) {
             router.push('/dashboard');
+        } else {
+          setLoginFailed(true);
         }
     };
 
@@ -88,6 +102,8 @@ export default function Home() {
             {error && <p className="text-red-500 text-sm mt-2">{error}</p>}
        
             {isAuthenticated && <SuccessfulLogin />}
+            {loginFailed && <UnsuccessfulLogin />}
+
           </form>
         </div>
       </main>
