@@ -5,7 +5,7 @@ test.describe('Login Page', () => {
     await page.goto('http://localhost:3000/')
  })
 
- // Test for successful login
+ // Test for successful login and logout.
  test('should login and logout successfully', async ({ page }) => {
 
    await page.getByLabel('Username').fill('JohnDoe');
