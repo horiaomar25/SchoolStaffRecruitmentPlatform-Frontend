@@ -1,7 +1,8 @@
 "use client";
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
+import Cookies from 'js-cookie';
 
 const Navigation = () => {
   // State to open and close mobile menu
@@ -23,6 +24,7 @@ const Navigation = () => {
   const handleLogout = () => {
     // Clear token or any other logout logic
     localStorage.removeItem('token'); 
+    Cookies.remove('jwtToken'); // Token needs to be removed from cookies.
 
     // Redirect to login or homepage
     router.push('/'); 
