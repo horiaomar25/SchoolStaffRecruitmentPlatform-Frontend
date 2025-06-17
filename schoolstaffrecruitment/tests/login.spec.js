@@ -10,7 +10,7 @@ test.describe('Login Page', () => {
    await page.fill('#username', 'JohnDoe');
    await page.fill('#password', 'Password123');
    await page.click('button[type="submit"]');
-   await expect(page).toHaveURL('http://localhost:3000/dashboard');
+   await expect(page).toHaveURL('http:/localhost:3000/dashboard');
    await expect(page.locator('li a:has-text("Dashboard")')).toBeVisible({ timeout: 15000});
  })
 

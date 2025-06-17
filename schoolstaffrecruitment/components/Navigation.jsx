@@ -22,10 +22,10 @@ const Navigation = () => {
   // Handle logout
   const handleLogout = () => {
     // Clear token or any other logout logic
-    localStorage.removeItem('token'); // Example: Remove token from localStorage
+    localStorage.removeItem('token'); 
 
     // Redirect to login or homepage
-    router.push('/'); // You can replace this with the appropriate route for your app
+    router.push('/'); 
   };
 
   return (
