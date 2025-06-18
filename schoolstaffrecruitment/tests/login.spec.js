@@ -31,6 +31,14 @@ test.describe('Login Page', () => {
    await expect(page.locator('[data-testid=unsuccessful-login-alert]')).toBeVisible();
  })
 
+ test('should show required validation in input', async ({page}) => {
+    
+  await page.getByTestId('login-button').click();
+  const userNameInput = page.getByLabel('Username');
+  await expect(userNameInput).toHaveAttribute('required');
+
+ })
+
  
 
   
