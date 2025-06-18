@@ -22,6 +22,15 @@ test.describe('Login Page', () => {
 
  })
 
+ test('should display the correct error message when login is incorrect', async ({page}) => {
+
+   await page.getByLabel('Username').fill('IncorrectUsername');
+   await page.getByLabel('Password').fill('IncorrectPassword');
+   await page.getByTestId('login-button').click();
+
+   await expect(page.locator('[data-testid=unsuccessful-login-alert]')).toBeVisible();
+ })
+
  
 
   
