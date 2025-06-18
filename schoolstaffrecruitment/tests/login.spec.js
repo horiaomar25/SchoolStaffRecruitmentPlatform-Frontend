@@ -32,11 +32,15 @@ test.describe('Login Page', () => {
  })
 
  test('should show required validation in input', async ({page}) => {
-    
   await page.getByTestId('login-button').click();
   const userNameInput = page.getByLabel('Username');
   await expect(userNameInput).toHaveAttribute('required');
 
+ })
+
+ test('password should be masked', async ({page}) => {
+  const passwordInput = page.getByLabel('Password');
+  await expect(passwordInput).toHaveAttribute('type', 'password');
  })
 
  
